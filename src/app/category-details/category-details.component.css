@@ -1,0 +1,93 @@
+.container {
+    max-width: 920px;
+    height: auto;
+    margin: 10px auto;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+td {
+    padding: 10px;
+}
+img {
+    border-radius: 10px;
+}
+.product {
+    text-align: center;
+}
+ .details {
+    padding:  10px;
+    background-color: #FFd7b5;
+    border-radius: 10px;
+}
+table {
+    min-width: 300px;
+    width: 100%;
+}
+.spinner {
+    margin: 0 auto;
+    text-align: center;
+}
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+  
+    margin: 0 auto;
+  }
+
+  .status {
+      background-color: green;
+      padding: 8px;
+      border-radius: 18px;
+  }
+  .disable{
+      background-color: red;
+      color: white;
+      /* width: 300px !important; */
+      padding: 2% 5% !important;
+      padding-right: 6%  !important;
+      border-radius: 50vw;
+
+  }
+  .active{
+    background-color: green;
+    color: white;
+    /* width: 300px !important; */
+    padding: 2% 5% !important;
+    padding-right: 6%  !important;
+    border-radius: 50vw;
+
+}
+  /* span {
+      border : 1px solid black;
+      border-radius: 10px;
+  } */
+  mat-card {
+    border: 1px solid black;
+    width: 250px;
+    margin: 5px;
+    background: #FFD7B5;
+    height: 180px;
+    cursor: pointer;
+    padding: 3%;
+}
+mat-card-header {
+    text-align: left;
+}
+.container1{
+    margin: 10px auto;
+    padding: 10px;
+    padding-bottom: 4%;
+    max-width: 900px;
+    border: 1px solid black;
+    border-radius: 8px;
+    /* height: 100vh; */
+}
+mat-card-actions {
+    bottom: 0;
+}
+.users {
+    background: #4198c9;
+}
+.viewmore {
+    display: flex;
+    justify-content: flex-end;
+}

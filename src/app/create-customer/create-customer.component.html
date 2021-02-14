@@ -1,0 +1,113 @@
+<div
+  class="container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-around none">
+
+  <h3>Customer Management > <b>Create Customer</b></h3>
+  <hr />
+  <div *ngIf = "loading" class="spinner">
+    <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Please wait...</h2>
+  </div>
+  <form
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="customer">
+    <h2><b>Customer Details</b></h2>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Enter First Name</mat-label>
+        <input type="text" matInput formControlName="name"/>
+        <mat-error >
+          <p style="color:red">Enter valid first name</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Enter Last Name</mat-label>
+        <input type="text" matInput formControlName="lastname"/>
+        <mat-error >
+          <p style="color:red">Enter valid last name</p>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Select Gender</mat-label>
+        <mat-select formControlName="gender" [(ngModel)]="selectedValue">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        <mat-error >
+          <p style="color:red">select gender</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Enter Password</mat-label>
+        <input [type]="hide ? 'password' : 'text'" matInput  formControlName="password" />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        <mat-error >
+          <p style="color:red">Enter valid password</p>
+        </mat-error>
+      </mat-form-field>
+      
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Mobile No</mat-label>
+        <input type="text" matInput formControlName="mobile" />
+        <mat-error>
+          <p style="color:red">Enter valid mobile number</p>
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput formControlName="email" />
+        <mat-error >
+          <p style="color:red">Enter valid email</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <br><br>
+    <button
+      type="submit"
+      mat-raised-button
+      style="float: right;"
+      [disabled]="form.invalid"
+      color="primary"
+    >
+      submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,468 @@
+.container {
+    max-width: 750px;
+    height: auto;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+td {
+    padding: 10px;
+}
+img {
+    border-radius: 10px;
+}
+.product {
+    text-align: center;
+}
+ .details {
+    padding:  10px;
+    background-color: #FFd7b5;
+    border-radius: 10px;
+}
+table {
+    
+    width: 100%;
+}
+.spinner {
+    margin: 0 auto;
+    text-align: center;
+}
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+  
+    margin: 0 auto;
+  }
+
+  .status {
+      background-color: green;
+      padding: 8px;
+      border-radius: 18px;
+  }
+  
+span {
+    font-weight: 600;
+    border-radius: 1vw;
+    display: inline-block;
+    padding: 0.3vw 1.3vw;
+}
+td{
+    text-align: center;
+}
+
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active, .collapsible:hover {
+    background-color: #555;
+  }
+  
+  .collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2212";
+  }
+  
+  .content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  /* The Close Button */
+  .close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #FFd7b5;
+    color: black;
+  }
+  
+  
+
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  
+  .omrs-input-underlined > input.ng-invalid.ng-touched,
+  .omrs-input-filled > input.ng-invalid.ng-touched {
+    background: var(--omrs-color-interaction-minus-two);
+    border-color:red;
+    
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input.ng-invalid.ng-touched+ .omrs-input-label,
+  .omrs-input-filled:not(.omrs-input-danger) > input.ng-invalid.ng-touched + .omrs-input-label {
+    color: red;
+  }
+  
+  :root {
+    --omrs-color-ink-lowest-contrast: rgba(47, 60, 85, 0.18);
+    --omrs-color-ink-low-contrast: rgba(60, 60, 67, 0.3);
+    --omrs-color-ink-medium-contrast: rgba(19, 19, 21, 0.6);
+    --omrs-color-interaction: #1e4bd1;
+    --omrs-color-interaction-minus-two: rgba(73, 133, 224, 0.12);
+    --omrs-color-danger: #b50706;
+    --omrs-color-bg-low-contrast: #eff1f2;
+    --omrs-color-ink-high-contrast: #121212;
+    --omrs-color-bg-high-contrast: #ffffff;
+    
+  }
+  /** END: Non Openmrs CSS **/
+  div.omrs-input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 30vw;
+  }
+  
+  /* Input*/
+  .omrs-input-underlined > input,
+  .omrs-input-filled > input {
+    border: none;
+    border-bottom: 0.125rem solid rgba(0, 0, 0, 0.589);
+    width: 100%;
+    height: 2rem;
+    font-size: 1.0625rem;
+    padding-left: 0.875rem;
+    line-height: 147.6%;
+    padding-top: 0.825rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .omrs-input-underlined > input:focus,
+  .omrs-input-filled > input:focus {
+    outline: none;
+  }
+  
+  .omrs-input-underlined > .omrs-input-label,
+  .omrs-input-filled > .omrs-input-label {
+    position: absolute;
+    top: 2vw;
+    line-height: 100%;
+    color: var(--omrs-color-ink-medium-contrast);
+    transition: top .2s;
+  }
+  
+  .omrs-input-underlined > svg,
+  .omrs-input-filled > svg {
+    position: absolute;
+    top: 0.9375rem;
+    right: 0.875rem;
+    fill: var(--omrs-color-ink-medium-contrast);
+  }
+  
+  .omrs-input-underlined > .omrs-input-helper,
+  .omrs-input-filled > .omrs-input-helper {
+    font-size: 0.9375rem;
+    color: var(--omrs-color-ink-medium-contrast);
+    letter-spacing: 0.0275rem;
+    margin: 0.125rem 0.875rem;
+  }
+  
+  .omrs-input-underlined > input:hover,
+  .omrs-input-filled > input:hover {
+    background: var(--omrs-color-interaction-minus-two);
+    border-color: #FFD7B5;
+    
+  }
+  
+  .omrs-input-underlined > input:focus + .omrs-input-label,
+  .omrs-input-underlined > input:valid + .omrs-input-label,
+  .omrs-input-filled > input:focus + .omrs-input-label,
+  .omrs-input-filled > input:valid + .omrs-input-label {
+    top: 0;
+    font-size: 0.9375rem;
+    margin-bottom: 1vw;
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus + .omrs-input-label,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
+    color: #FFD7B5;
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus {
+    border-color: var(--omrs-color-interaction);
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
+    fill: var(--omrs-color-ink-high-contrast);
+  }
+  
+  /** DISABLED **/
+  
+  .omrs-input-underlined > input:disabled {
+    background: var(--omrs-color-bg-low-contrast);
+    cursor: not-allowed;
+  }
+  
+  .omrs-input-underlined > input:disabled + .omrs-input-label,
+  .omrs-input-underlined > input:disabled ~ .omrs-input-helper{
+    color: var(--omrs-color-ink-low-contrast);
+  }
+  
+  .omrs-input-underlined > input:disabled ~ svg {
+    fill: var(--omrs-color-ink-low-contrast);
+  }
+  
+  
+  /** DANGER **/
+  
+  .omrs-input-underlined.omrs-input-danger > .omrs-input-label, .omrs-input-underlined.omrs-input-danger > .omrs-input-helper,
+  .omrs-input-filled.omrs-input-danger > .omrs-input-label, .omrs-input-filled.omrs-input-danger > .omrs-input-helper{
+    color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > svg {
+    fill: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > input {
+    border-color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-underlined > input {
+    background: var(--omrs-color-bg-high-contrast);
+  }
+  .omrs-input-filled > input {
+    background: var(--omrs-color-bg-low-contrast);
+  }
+  .button {
+    background-color: gainsboro;
+    border: none;
+    color: black;
+    
+    font-size: 0.9375rem;
+  
+    cursor: pointer;
+   
+    }
+    
+  
+    @media only screen and (min-width: 900px) {
+      .modal-body {
+        padding-left: 30%;
+        padding-top: 2%;
+      }
+      .paa{
+        padding-left: 4%;
+      }
+      
+      select {
+    height:3rem;
+     width: 75%;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  
+    background-color: #FFD7B5;
+    border: none;
+    border-bottom: 1px solid black;
+    color: black;
+    padding-left: 2vw;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 1vw;
+    }
+  }
+  
+    @media only screen and (max-width: 900px) {
+      .mat-table .mat-row {
+        border-bottom: 5px solid #ddd;
+        padding: 15px;
+        display: block;
+        height: 420px;
+        flex-direction: column;
+      }
+    
+      mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+        padding-right: 10px;
+      }
+    
+      .mat-table .mat-cell {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1em;
+        text-align: right;
+       
+    
+      }
+      .mat-table .mat-cell:before {
+    
+        content: attr(data-label);
+        float: left;
+    
+        text-transform: uppercase;
+        font-weight: bold;
+    
+        font-size: .85em;
+      }
+      .mat-table .mat-cell:last-child {
+        border-bottom: 0;
+      }
+    
+      mat-cell:first-of-type{
+        padding-left: 10px;
+    }
+      .fontsize{
+        font-size: 0.2vw;
+      }
+      .modal-body {
+        padding-left: 5%;
+        padding-top: 2%;
+      }
+      
+    div.omrs-input-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+      width: 90%;
+      }
+    .wid{
+      width: 100vw;
+    }
+    
+    select {
+      height: auto;
+      width: 90%;
+      margin-bottom: 5vw;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1vw;
+      background-color: #FFD7B5;
+      border-bottom: 0.2vw solid black;
+      color: black;
+      height: auto;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border-radius: 6vw;
+      padding-left: 5vw;
+    padding-top: 3vw;
+    padding-bottom: 2.5vw;
+      }
+    }
+  
+  
+    .lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    }
+    .lds-ripple div {
+    position: absolute;
+    border: 4px solid black;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 0.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .lds-ripple div:nth-child(2) {
+    animation-delay: -0.4s;
+    }
+    @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+    }
+    mat-header-row, mat-paginator {
+      background-color: #FFD7B5;
+    }
+    
+    mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+      padding-left: 24px;
+    }
+    mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+      padding-right: 24px;
+    }
+    .mat-cell {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size:1vw;
+    }
+    mat-row {
+      cursor: pointer;
+    }

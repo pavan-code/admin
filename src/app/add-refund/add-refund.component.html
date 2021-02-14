@@ -1,0 +1,21 @@
+<div mat-dialog-title>    
+    <mat-slide-toggle [checked]="checked" (change) = "call($event)">Add Refund</mat-slide-toggle> <br>
+</div>
+<mat-dialog-content> 
+    <!-- {{refundForm.value | json}} -->
+    <form [formGroup]= "refundForm" *ngIf = "checked">
+        <mat-form-field appearance='outline' style="width: 100%;">
+            <mat-label>Bank Reference Number</mat-label>
+            <input type="text" matInput formControlName = "bankRefNum">
+        </mat-form-field> <br>
+        <mat-form-field appearance='outline' style="width: 100%;">
+            <mat-label>Refund Amount</mat-label>
+            <input type="number" matInput formControlName = "refAmount">
+        </mat-form-field> <br>
+        <mat-form-field appearance='outline' style="width: 100%;">
+            <mat-label>Refunded To</mat-label>
+            <input type="text" matInput formControlName = "refundedTo">
+        </mat-form-field> <br>
+    </form>
+    <button mat-raised-button (click)="save()">Save</button>
+</mat-dialog-content>

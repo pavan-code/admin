@@ -1,0 +1,27 @@
+.close-button{
+    /* float: right; */
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+  }
+  
+  .close-icon {
+    transition: 0.3s ease-in-out;
+  }
+  
+  .close-icon:hover {
+    transform: rotate(90deg);
+  }
+
+  ::ng-deep .icon-outside .close-button{
+    float: right;
+    top:-52px;
+    right:-52px;
+  }
+  
+  ::ng-deep .icon-outside .mat-dialog-container {
+   overflow: unset
+  }
+ 

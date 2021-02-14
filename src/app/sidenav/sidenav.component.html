@@ -1,0 +1,140 @@
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [(mode)]="sidebar" [(opened)]='opened'>
+    <h2 style="margin: 15px 0; width: 100%; text-align: center;">
+      <b>Administrator</b>
+
+    </h2>
+
+    <mat-divider></mat-divider>
+    <mat-list>
+        <mat-list-item>
+          <button (click)="sidenav.toggle()" mat-button routerLink='/home/dashboard'>
+            <img src="assets/images/dashboard.svg" width="24px" style="margin: 0 10px;" alt="">
+            <b>Dashboard</b></button>
+    </mat-list-item>
+    </mat-list>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> <img src="assets/images/prodm.svg" width="24px" style="margin: 0 10px;" alt="">
+             <b>Product management</b>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+            <button mat-button (click)="sidenav.toggle()" routerLink='/home/product-management/add-new-product'>
+              <img src="assets/images/prod.svg" width="24px" style="margin: 0 10px;" alt="">
+              <b>Add new product</b></button>
+
+            <button mat-button  (click)="sidenav.toggle()" routerLink='/home/product-management/all-products' type="button">
+              <i class="fa fa-cube" style="font-size: 20px; margin: 0 10px;"></i><b>Show all products</b></button>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><img src="assets/images/category.svg" width="24px" style="margin: 0 10px;" alt=""> <b>Category management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button (click)="sidenav.toggle()" routerLink='/home/category-management/add-new-category'><b>Add new Category</b> </button>
+          <button mat-button (click)="sidenav.toggle()" routerLink='/home/category-management/all-categories'><b>Show all categories</b></button>
+        </mat-list-item>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><img src="assets/images/userm.svg" width="24px" style="margin: 0 10px;" alt="">
+            <b>User management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button  routerLink='home/user-management/add-user' (click)="sidenav.toggle()" > <mat-icon style="font-size: 24px; margin: 0 10px;"> person_add</mat-icon>
+            <b>Add new User</b></button>
+          <button mat-button routerLink='home/user-management/all-users' (click)="sidenav.toggle()"><mat-icon style="font-size: 24px; margin: 0 10px;"> people</mat-icon>
+            <b>Show all users</b></button>
+        </mat-list-item>
+      </mat-expansion-panel>
+
+       <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><img src="assets/images/orderm.svg" width="24px" style="margin: 0 10px;" alt="">
+            <b>Order management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button routerLink="home/order-management/view-all-orders" (click)="sidenav.toggle()"> <mat-icon style="font-size: 24px; margin: 0 10px;"> person_add</mat-icon>
+            <b>View all Orders</b></button>          
+        </mat-list-item>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><img src="assets/images/management.svg" width="24px" style="margin: 0 10px;" alt="">
+            <b>Customer management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button routerLink='home/customer-management/add-customer'> <mat-icon style="font-size: 24px; margin: 0 10px;"> person_add</mat-icon>
+            <b>Create new customer</b></button>
+          <button mat-button routerLink='home/customer-management/all-customers'><mat-icon style="font-size: 24px; margin: 0 10px;"> people</mat-icon>
+            <b>View all customers</b></button>
+        </mat-list-item>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><mat-icon style="font-size: 24px; margin: 0 10px;">rate_review</mat-icon>
+            <b>Review management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button routerLink="home/review-management/view-all-reviews" (click)="sidenav.toggle()"> <img src="assets/images/feedback.svg" style="margin: 0 10px;" width="24px" alt=""> 
+            <b>View all reviews</b></button>        
+        </mat-list-item>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title><mat-icon style="font-size: 24px; margin: 0 10px;">pages</mat-icon>
+            <b>Page management</b> </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item>
+          <button mat-button routerLink='home/page-management/deal-of-the-day' (click)="sidenav.toggle()"> <img src="assets/images/hot-item.svg" style="margin: 0 10px;"  width="30px" alt="">
+            <b>Deal of the day</b></button>
+          <button mat-button routerLink='home/page-management/trending-products' (click) = "sidenav.toggle()"><mat-icon style="font-size: 24px; margin: 0 10px;"> trending_up</mat-icon>
+            <b>Trending products</b></button>
+          <button mat-button routerLink="home/page-management/our-all-products" (click)="sidenav.toggle()"><i class="fa fa-cubes" style="font-size: 20px; margin: 0 10px;"></i>
+            <b>Our all products</b></button>
+        </mat-list-item>
+      </mat-expansion-panel>
+
+
+    
+      <mat-list>
+        <mat-list-item>
+          <button (click)="sidenav.toggle()" mat-button routerLink='/home/delivery-management'>
+            <img src="assets/images/dashboard.svg" width="24px" style="margin: 0 10px;" alt="">
+            <b>Delivery management</b></button>
+        </mat-list-item>
+      </mat-list>
+
+
+
+    </mat-accordion>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div  style="height: 0px;" id="top"></div>
+    <mat-toolbar>
+      <button class="profile menu" mat-button  (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
+      <img class="image" style="margin: 0 auto;" src="../../assets/images/logo.png" alt="">
+        <button mat-button class="profile"  [matMenuTriggerFor]="menu"><span *ngIf = "hide"></span> <i class="fa fa-user" style="font-size: 20px; margin: 5px;"></i></button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink='/login'*ngIf = "!loggedIn" > <i class="fa fa-sign-in" style="font-size: 20px; margin: 5px;"></i>  Login</button>
+          <button mat-menu-item > <i class="fa fa-cogs" style="font-size: 20px; margin: 5px;"></i> Settings</button>
+          <button mat-menu-item (click)="logout()" > <i class="fa fa-sign-out" style="font-size: 20px; margin: 5px;"></i> Logout</button>
+        </mat-menu>
+    </mat-toolbar>
+
+    <div class="container">
+      
+      <router-outlet></router-outlet>        
+    </div>       
+  </mat-sidenav-content>
+</mat-sidenav-container>

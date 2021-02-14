@@ -1,0 +1,396 @@
+<div  class="spinner" *ngIf="loading">
+  <mat-spinner strokeWidth='3'></mat-spinner>
+</div>
+<div *ngIf="!loading"
+  class="container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-around none">
+  <h3>Customer Management > <b>Edit Customer : {{ res._id}}</b></h3>
+
+  <hr />
+  <form *ngIf="basic"
+    #form="ngForm"
+    (ngSubmit)="save(form.value)"
+    novalidate
+    [formGroup]="customer">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between none">
+      <h2><b>Customer Details</b></h2>
+      <mat-slide-toggle [(ngModel)]="isActive" color="primary" formControlName="status">
+        <span  style="font-weight: bold;">Status : </span>
+        <span *ngIf="isActive" style="color: green;font-weight: 600;">Active</span>
+        <span *ngIf="!isActive" style="color: red;font-weight: 600;">Disabled</span>
+       </mat-slide-toggle>
+     </div>
+     <div
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.md="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between none">
+
+     <mat-form-field appearance="outline" class="half-width">
+       <mat-label>Enter First Name</mat-label>
+       <input type="text" matInput formControlName="name"/>
+       <mat-error >
+         <p style="color:red">Enter valid first name</p>
+       </mat-error>
+     </mat-form-field>
+
+     <mat-form-field appearance="outline" class="half-width">
+       <mat-label>Enter Last Name</mat-label>
+       <input type="text" matInput formControlName="lastname"/>
+       <mat-error >
+         <p style="color:red">Enter valid last name</p>
+       </mat-error>
+     </mat-form-field>
+
+   </div>
+
+   <div
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.md="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between none">
+
+
+
+     <mat-form-field appearance="outline" class="half-width">
+       <mat-label>Select Gender</mat-label>
+       <mat-select formControlName="gender" [(ngModel)]="selected">
+         <mat-option value="Male">Male</mat-option>
+         <mat-option value="Female">Female</mat-option>
+         <mat-option value="Other">Other</mat-option>
+       </mat-select>
+       <mat-error >
+         <p style="color:red">select gender</p>
+       </mat-error>
+     </mat-form-field>
+
+     <mat-form-field appearance="outline" class="half-width">
+      <mat-label>Mobile No</mat-label>
+      <input type="text" matInput formControlName="mobile" />
+      <mat-error>
+        <p style="color:red">Enter valid mobile number</p>
+      </mat-error>
+
+    </mat-form-field>
+
+   </div>
+
+   <div
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.md="row"
+     fxLayout.xs="column"
+     fxLayoutAlign="space-between none">
+
+     <mat-form-field appearance="outline" class="half-width">
+       <mat-label>Email</mat-label>
+       <input type="text" matInput formControlName="email" />
+       <mat-error >
+         <p style="color:red">Enter valid email</p>
+       </mat-error>
+     </mat-form-field>
+   </div>
+
+
+   <div
+   fxLayout="row"
+   fxLayoutAlign="space-between none">
+   <button
+   mat-raised-button
+   color="primary"
+   [routerLink]="['/home/customer-management/view-customer', id]">
+
+   Back
+ </button>
+   <button
+   type="submit"
+   mat-raised-button
+
+   [disabled]="form.invalid"
+   color="primary"
+ >
+   Save
+ </button>
+ </div>
+  </form>
+
+  <form *ngIf="addr"
+    #form="ngForm"
+    (ngSubmit)="saveAddress(form.value)"
+    novalidate
+    [formGroup]="address">
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex.gt-xs="1 1 50">
+        <h2><b>Address : </b></h2>
+      </div>
+      <div fxFlex.gt-xs="1 1 50" fxLayout="row-reverse">
+        <mat-form-field appearance="outline">
+          <mat-label>Address Type</mat-label>
+          <mat-select [(ngModel)]="selectedValue" formControlName="addressType">
+            <mat-option value="work">
+              work
+            </mat-option>
+            <mat-option value="home">
+              home
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="center center">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Address</mat-label>
+        <textarea id="area" type="text" matInput formControlName="adres" cols="100" rows="6"
+        wrap="hard"></textarea>
+        <mat-error>
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Landmark</mat-label>
+        <input type="text" matInput formControlName="landmark" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>city</mat-label>
+        <input type="text" matInput formControlName="city" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>PinCode</mat-label>
+        <input type="text" matInput formControlName="postal" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>State</mat-label>
+        <input type="text" matInput formControlName="state" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between none">
+      <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/home/customer-management/view-customer', id]">
+
+      Back
+    </button>
+      <button
+      type="submit"
+      mat-raised-button
+
+      [disabled]="form.invalid"
+      color="primary"
+    >
+      Save
+    </button>
+    </div>
+  </form>
+
+  <form *ngIf="addAddr"
+    #form="ngForm"
+    (ngSubmit)="addAddress(form.value)"
+    novalidate
+    [formGroup]="address">
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex.gt-xs="1 1 50">
+        <h2><b>Address : </b></h2>
+      </div>
+      <div fxFlex.gt-xs="1 1 50" fxLayout="row-reverse">
+        <mat-form-field appearance="outline">
+          <mat-label>Address Type</mat-label>
+          <mat-select [(ngModel)]="selectedValue" formControlName="addressType">
+            <mat-option value="work">
+              work
+            </mat-option>
+            <mat-option value="home">
+              home
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      fxLayout="column"
+      fxLayout.sm="column"
+      fxLayout.md="column"
+      fxLayout.xs="column"
+      fxLayoutAlign="center center">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Address</mat-label>
+        <textarea id="area" type="text" matInput formControlName="adres" cols="100" rows="6"
+        wrap="hard"></textarea>
+        <mat-error>
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Landmark</mat-label>
+        <input type="text" matInput formControlName="landmark" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>city</mat-label>
+        <input type="text" matInput formControlName="city" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>PinCode</mat-label>
+        <input type="text" matInput formControlName="postal" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>State</mat-label>
+        <input type="text" matInput formControlName="state" />
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between none">
+      <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/home/customer-management/view-customer', id]">
+
+      Back
+    </button>
+      <button
+      type="submit"
+      mat-raised-button
+
+      [disabled]="form.invalid"
+      color="primary"
+    >
+      Save
+    </button>
+    </div>
+  </form>
+
+  <form *ngIf="passwordchange"
+    #form="ngForm"
+    (ngSubmit)="updatePassword(form.value)"
+    novalidate
+    [formGroup]="passwordform">
+    <h2><b>Change Password</b></h2>
+    <div
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.md="row"
+      fxLayout.xs="column"
+      fxLayoutAlign="space-between none">
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Password</mat-label>
+        <input [type]="hide1 ? 'password' : 'text'" matInput formControlName="password" />
+        <button type="button" mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+          <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Confirm Password</mat-label>
+        <input  [type]="hide2 ? 'password' : 'text'" matInput formControlName="confirmpassword" />
+        <button type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        <mat-error >
+          <p style="color:red">required field</p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between none">
+      <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/home/customer-management/view-customer', id]">
+
+      Back
+    </button>
+      <button
+      type="submit"
+      mat-raised-button
+
+      [disabled]="form.invalid"
+      color="primary"
+    >
+      Save
+    </button>
+    </div>
+  </form>
+</div>

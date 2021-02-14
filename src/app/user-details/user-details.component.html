@@ -1,0 +1,156 @@
+<div class="container" fxLayoutGap='2' fxLayout='column'>
+    <div *ngIf = "!data" class="spinner">
+        <mat-spinner strokeWidth='3'></mat-spinner>
+        <h3>Hang on there... <br>Getting User details</h3>               
+    </div>
+    <div *ngIf="data"  >
+      <div style="margin-bottom: 4vw;" fxLayout='row' fxLayout.xs = 'column'>
+        <div   fxFlex='0 1 73%' >
+            <h3> User Management > <b>User detail  </b></h3>
+        </div>
+            <div  fxFlex='0 1 27%'>
+            <button mat-stroked-button  (click)="editing()"><mat-icon>edit</mat-icon> Edit {{user}} details</button>
+        </div>
+      </div>
+        <div fxLayout='row' fxLayout.xs = 'column' fxLayoutGap='5vw'>
+           
+            <div fxFlex='1 1' class="details paa fontsize" style="font-size: 1px;">
+                <h2><b>User Details :- </b> </h2>
+              <h3><b> <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">Full Name : 
+                </div> <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;"> {{data.name}} </div></b>
+                </h3>
+               
+                <h3><b><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">User Name :
+                 </div> <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;"> {{data.username}} </div></b>  </h3>
+                 <h3><b><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">Email Address :
+                </div><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;"> {{data.email}} </div></b>  </h3>
+                 <h3><b><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">Mobile Number :
+                </div><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;"> {{data.mobile}} </div></b>  </h3>
+                <h3><b><div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">Current Status :
+                </div> <div fxFlex="50" fxFlex.xs="100" style="padding-top: 0.8vw;">
+                    <span *ngIf="data.status==0" style="background: red;width:65px;text-align:center;border-radius: 20px;color:white;">
+                        Disabled
+                      </span>
+                      
+                      <span *ngIf="data.status==1" style="background: green;width:65px;border-radius: 20px;color:white;text-align:center">
+                        Active
+                      </span>
+                    </div></b></h3> 
+            </div>
+        </div>
+        
+        <hr style="margin-top: 6vw; height:2px;color:rgb(207, 194, 74);background-color:rgb(77, 170, 73)">
+        <div style="margin-bottom: 3vw;">
+        <div fxFlex="50" fxFlex.xs="100">
+
+        <span 
+        style="padding-left: 2vw;padding-top: 1vw; font-size: 1rem;">Status <mat-slide-toggle style="margin-left: 2%;" [(ngModel)]="status"></mat-slide-toggle>  </span><br>
+        </div>
+        <div fxFlex="51" fxFlex.xs="100" style="margin-top: 1.3vw;">  <button mat-flat-button (click)="submitStatus()"
+           class="button"><span style="border-radius: 20px;">update</span></button></div>
+        </div> 
+       
+        <button style="width: 100%; padding: 0.7vw 1vw; font-weight: 700;" class="button" (click)="activate()">Change Password</button>
+        <br><br>
+        <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Logs
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <h2><b>User Logs :</b></h2>
+            
+            <div>
+            <mat-table [dataSource]="dataSource"  matSort style="box-shadow: 0 2px 2px rgba(0,0,0,0.25);">
+              <ng-container matColumnDef="SR No.">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Sr No.</b> </mat-header-cell>
+                <mat-cell *matCellDef="let row;let i=index" data-label="Sr No.">
+                   {{i+1}}
+                 
+                </mat-cell>
+              </ng-container>
+          
+              <ng-container matColumnDef="Login/Logout">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Login/Logout</b> </mat-header-cell>
+                <mat-cell *matCellDef="let row;let i=index" data-label="Login/Logout">
+                {{row.type}}
+                 
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="timing">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Timing</b> </mat-header-cell>
+                <mat-cell *matCellDef="let row;let i=index" data-label="timing">
+                
+         {{row.timestamp}}  
+          
+                </mat-cell>
+              </ng-container>          
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No Logs found</td>
+              </tr>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"  fxHide.xs></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns; let i=index;" (click)="userDetails(i)">
+              </mat-row>
+            </mat-table>
+          
+            <mat-paginator #paginator
+            [length]="dataSource?.data.length"
+            [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 25, 100]"></mat-paginator>
+          </div>
+           
+          </mat-expansion-panel>
+          
+        <br>
+        </div>
+        
+
+<div id="myModal" [ngStyle]="{display: getdisplay()}" class="modal">
+
+  <div class="modal-content">
+    <div class="modal-header" style="padding-top: 1vw;">
+      <span class="close" (click)="close()">&times;</span>
+      <h2>Change Password</h2>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="flex-container" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.xs="column" fxLayout.sm="column" fxLayout.md="column">
+          <div fxFlex="100" fxFlex.xs="90" style="padding-top: 1vw;">
+            <div class="omrs-input-group" >
+                <label class="omrs-input-filled"> 
+                  <input name="username" [disabled]=true  [(ngModel)]="username" class="input-field">
+                  
+                  </label>
+            </div>
+        </div>
+          <div fxFlex="100" fxFlex.xs="90" style="padding-top: 1vw;" >
+          <div class="omrs-input-group" >
+              <label class="omrs-input-filled"> 
+                <input ngModel #pass="ngModel" type="password"
+                name="password"  required >
+                <span class="omrs-input-label">Password</span>
+                <span *ngIf="pass.touched && !pass.valid" class="omrs-input-helper">Enter Password</span>
+              </label>
+          </div>
+      </div>
+      <div fxFlex="100" fxFlex.xs="90" style="padding-top: 1vw;" >
+        <div class="omrs-input-group">
+            <label class="omrs-input-filled">
+              <input ngModel #pass2="ngModel"  class="input-field" type="password"
+              name="confirmPassword"   required>
+            <span class="omrs-input-label">Re-Password</span>
+          <span *ngIf="pass2.touched  && (pass2.value!=pass.value)"  class="omrs-input-helper">Enter Same Password</span>
+            </label>
+            
+        </div>
+    </div>
+    <div fxFlex="51" fxFlex.xs="100">  <button type="submit" [disabled]='pass2.value!=pass.value || pass.value=="" ' class="btn btn-success" mat-flat-button (click)="submitStatus()" style="margin-bottom: 7vw;"
+      class="button"><span> update </span></button></div>
+  </div>
+      </form>
+    </div>
+    
+  </div>
+
+</div>
+</div>

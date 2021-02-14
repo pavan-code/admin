@@ -1,0 +1,275 @@
+<div class="container">
+  <div *ngIf="show" class="spinner">
+    <h2>
+      <mat-spinner strokeWidth="5" diameter="100"></mat-spinner>Getting order
+      details...
+    </h2>
+  </div>
+  <div *ngIf="!show">
+    <h3>Order Management > <b>Order details</b> > {{ details.subOrderID }}</h3>
+    <hr />
+    <br />
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+      <mat-card fxFlex="1 1 50%">
+        <mat-card-header>
+          <mat-card-title>Delivery Address</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br />
+        <mat-card-content>
+          <p class="name">
+            <b>{{ details.deliveryAddress.name }}</b>
+          </p>
+          <p>
+            {{ details.deliveryAddress.addressType }},
+            {{ details.deliveryAddress.address }} <br />
+            {{ details.deliveryAddress.city }} -
+            {{ details.deliveryAddress.pincode }} <br />
+            {{ details.deliveryAddress.state }}
+          </p>
+          <b>Phone number</b> <br />
+          <p>{{ details.deliveryAddress.mobile }}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card fxFlex="1 1 50%">
+        <mat-card-header>
+          <mat-card-title>Order details</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br />
+        <mat-card-content>
+          <table cellpadding="7">
+            <tr>
+              <td><b>Customer ID</b></td>
+              <td>: {{ details.customerID }}</td>
+            </tr>
+            <tr>
+              <td><b>Order ID</b></td>
+              <td>: {{ details.orderID }}</td>
+            </tr>
+            <tr>
+              <td><b>Sub Order ID</b></td>
+              <td>: {{ details.subOrderID }}</td>
+            </tr>
+            <tr>
+              <td><b>Product ID</b></td>
+              <td>: {{ details.productID }}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <br />
+    <mat-card class="item">
+      <mat-card-header>
+        <mat-card-title> Product details 
+            <button (click)="changeStatus()" 
+            *ngIf = "details.itemStatus != 1 && details.itemStatus != 10 && details.itemStatus != 20" 
+            style="position: absolute; right: 13px;" 
+            mat-raised-button disableRipple>Change Order Status</button>
+        </mat-card-title>
+      </mat-card-header> <br>
+      <mat-card-content
+        fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayoutGap.xs="5px"
+      >
+        <div
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutGap="30px"
+          fxLayoutGap.xs="5px"
+          fxLayoutAlign.xs = "space-around center"
+        >
+          <img
+            width="100px"
+            src="{{ config }}{{ details.productImage }}"
+            alt=""
+          />
+          <div class="details">
+            <p>
+              <b>{{ details.productName }}</b>
+            </p>
+            <p>
+              <b>{{ details.category }}</b>
+            </p>
+            <p style="font-size: 18px">
+              <b>₹ {{ details.perUnitPrice }} </b>
+            </p>
+          </div>
+          <div class="specs">              
+            <b>Specifications</b>
+            <table>
+              <tr>
+                <td>Color</td>
+                <td>: {{ details.color }}</td>
+              </tr>
+              <tr>
+                <td>Size</td>
+                <td>: {{ details.size }}</td>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td>: {{ details.quantity }}</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <b>Order placed on</b>
+            <p>{{ details.orderCreatedOn | slice: 0:10 }}</p>
+          </div>
+          <div>
+            <b>Order Status</b> <br />
+            <br />
+            <!-- <div> -->
+            <span
+              class="tags"
+              style="background-color: rgb(255, 28, 28); color: white"
+              *ngIf="details.itemStatus == -1"
+              >Failed</span
+            >
+            <span
+              class="tags"
+              style="background-color: rgb(230, 230, 0); color: black"
+              *ngIf="details.itemStatus == 0"
+              >Pending</span
+            >
+            <span
+              class="tags"
+              style="background-color: rgb(67, 180, 255); color: white"
+              *ngIf="details.itemStatus == 1"
+              >Placed</span
+            >
+            <button *ngIf ="details.itemStatus == 1" (click)="approve()" mat-icon-button><mat-icon>edit</mat-icon></button>
+            <span style="background-color: rgb(111, 255, 111); color: black" class="tags" *ngIf="details.itemStatus == 2">Confirmed</span>
+            <span style="background-color: rgb(255, 170, 43); color: white" class="tags" *ngIf="details.itemStatus == 3">Packed</span>
+            <span style="background-color: rgb(8, 15, 199); color: white" class="tags" *ngIf="details.itemStatus == 4">Shipped</span>
+            <span
+              class="tags"
+              style="background-color: rgb(255, 28, 28); color: white"
+              *ngIf="details.itemStatus == 10"
+              >Cancelled</span
+            >
+            <span
+              class="tags"
+              style="background-color: rgb(2, 179, 2); color: white"
+              *ngIf="details.itemStatus == 20"
+              >Delivered</span
+            >
+            <!-- </div> -->
+          </div>
+        </div>
+        <br fxShow.xs />
+        <div class="tracker" *ngIf = "details.itemStatus != 10">
+          <span *ngFor="let item of counts; let i = index">
+            <span class="circle-desc" [class.circle-desc-active]="orderStatus == item"
+              >{{ item }}</span>
+            <span class="circles" [class.active]="orderStatus == item"></span>
+            <span class="bar" *ngIf="i != counts.length - 1"></span>
+          </span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <br />
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Refund Details
+          <mat-icon> attach_money</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div> 
+        <div *ngIf="details.refundDetails.isRefund == false">
+          <p>No refund details provided</p>
+          <button mat-raised-button (click)="openDialog()">Add Refund</button>
+        </div>
+        <div *ngIf="details.refundDetails.isRefund == true">
+          <table cellpadding="7">
+            <tr>
+              <td>Bank Reference Number</td>
+              <td>: {{ details.refundDetails.bankReferenceNumber }}</td>
+            </tr>
+            <tr>
+              <td>Refund Amount</td>
+              <td>: {{ details.refundDetails.refundAmount }}</td>
+            </tr>
+            <tr>
+              <td>Refund Initiation Time</td>
+              <td>: {{ details.refundDetails.refundInitiationTime }}</td>
+            </tr>
+            <tr>
+              <td>Refunded To</td>
+              <td>: {{ details.refundDetails.refundedTo }}</td>
+            </tr>
+          </table>
+          <button mat-raised-button (click)="openDialogUpdate()" >Update Refund</button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <br />
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Shipping Details &nbsp;
+          <mat-icon> local_shipping</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <!-- {{details.shippingDetails.isDetails}} -->
+      <p *ngIf="details.shippingDetails.isDetails == false">
+        No shipping details provided
+      </p>
+      <div *ngIf="details.shippingDetails.isDetails == true">
+        <table cellpadding="7">
+          <tr>
+            <td>AWB</td>
+            <td>: {{ details.shippingDetails.awb }}</td>
+          </tr>
+          <tr>
+            <td>Courier Name</td>
+            <td>: {{ details.shippingDetails.courierName }}</td>
+          </tr>
+          <tr>
+            <td>Courier Website</td>
+            <td>: {{ details.shippingDetails.courierWebsite }}</td>
+          </tr>
+        </table>
+        <button *ngIf = "details.itemStatus!=20" mat-raised-button (click)="updateShipping()">Update Shipping Details</button>
+      </div>
+    </mat-expansion-panel>
+    <br />
+    <div>
+      <h3><b>Other items in the order</b></h3>
+      <h3 *ngIf="suborders.length == 0">No other items in this order</h3>
+      <div *ngIf="suborders.length != 0">
+        <mat-card
+          *ngFor="let item of suborders"
+          style="width: 250px; cursor: pointer"
+          [routerLink]="[
+            '/home/order-management/order-details',
+            details.orderID,
+            item.subOrderID
+          ]"
+        >
+          <mat-card-content fxLayout="row" fxLayoutGap="20px">
+            <img
+              src="{{ config }}{{ item.productImage }}"
+              width="100px"
+              alt=""
+            />
+            <div>
+              <p>
+                <b>{{ item.productName }}</b>
+              </p>
+              <p>{{ item.category }}</p>
+              <p>
+                <b>₹.{{ item.price }}</b>
+              </p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title style="text-align: center;">Order Approval</h2>
+<mat-dialog-content>
+    <!-- <mat-button-toggle-group appearance="legacy" #group="matButtonToggleGroup">
+        <mat-button-toggle value="confirm" aria-label="Text align left">
+            Confirm
+          <mat-icon>done</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="cancel" aria-label="Text align center">
+            Reject
+            <mat-icon>highlight_off</mat-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <br> <br> -->
+    <div fxLayoutAlign="space-around center">
+        <button mat-button (click)="save('confirm')" style="background-color: green; color: white;">Confirm</button>
+        <button mat-button (click)="save('cancel')" style="background-color: red; color: white;">Cancel</button>
+    </div>
+    <!-- <button mat-button (click)="save(group.value)" >Save</button> -->
+    <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+      
+</mat-dialog-content>

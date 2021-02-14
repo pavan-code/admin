@@ -1,0 +1,29 @@
+.container {
+  max-width:750px;
+  height: auto;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+
+.details {
+  padding:  10px;
+  background-color: #FFd7b5;
+  border-radius: 10px;
+}
+table {
+  min-width: 300px;
+  width: 100%;
+}
+.spinner {
+  margin: 0 auto;
+  text-align: center;
+}
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+
+  margin: 0 auto;
+}
+
+

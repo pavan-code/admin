@@ -1,0 +1,53 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+
+<mat-dialog-content>
+    <div fxLayout='row' fxLayout.xs = 'column' fxLayoutAlign="space-between none">
+        <div>
+            <table style="width: 170px;">
+                <tr>
+                    <td><b>Name</b> </td>
+                    <td> {{details.name}} </td>
+                </tr>
+                <tr>
+                    <td><b>Category</b></td>
+                    <td> {{details.category}} </td>
+                </tr>
+            </table>
+        </div>
+        <div >
+            <img style="border: 1px solid black; padding: 2px; border-radius: 8px;"
+             src="{{config}}{{details.image}}" width="100px" alt="">
+        </div>
+    </div>
+    
+    <div style="border: 1px solid black; padding: 5px; border-radius: 8px;">
+        
+        <table cellpadding='5' style="width: 100%;">
+            <tr>
+                <td>Deal of the day</td>
+                <td><mat-slide-toggle (change)="changeDeal($event)"></mat-slide-toggle></td>
+                <td style="text-align: right;">
+                    <button [disabled] = "this.deal == false" mat-stroked-button (click)="saveDeal()" style="background-color: #ffd7b5;">Save</button>
+                </td>
+            </tr> 
+            <tr>
+                <td>Trending products</td>
+                <td><mat-slide-toggle (change)="changeTrending($event)"></mat-slide-toggle></td>
+                <td style="text-align: right;">
+                    <button [disabled] = "this.trending == false" mat-stroked-button (click)="saveTrending()" style="background-color: #ffd7b5;">Save</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Our all products</td>
+                <td><mat-slide-toggle (change)= "changeAll($event)"></mat-slide-toggle></td>
+                <td style="text-align: right;">
+                    <button [disabled] = "this.all == false" mat-stroked-button (click)="saveAll()" style="background-color: #ffd7b5;">Save</button>
+                </td>
+            </tr>
+        </table>
+        
+        
+    </div>
+</mat-dialog-content>

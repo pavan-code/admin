@@ -1,0 +1,107 @@
+<div *ngIf="loader" style="margin-left: 40vw; margin-top: 5%;">
+  <div class="lds-ripple">
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<div *ngIf="!loader">
+  <div class="box" style="border: 10px;margin-bottom: 2vw;">
+    <div class="one" style="
+font-weight: 700;
+padding-bottom: 2vw;
+border-radius: 1.75vw;
+width: 6vw;
+padding-top: 5vw;
+padding-left: 5%;">
+        <div class="flex-container" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.xs="column" fxLayout.sm="column" fxLayout.md="column">
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                  <div fxFlex="50" fxFlex.xs="100" >
+                    <div class="omrs-input-group checking wid">
+                        <label class="omrs-input-underlined">
+                          <input [disabled]="editing" ngModel #user="ngModel"
+                          name="username" required >
+                          <span class="omrs-input-label" [hidden]="editing" >User-Name</span>
+                            <span   *ngIf="user.touched && !user.valid" class="omrs-input-helper">Enter Username</span>
+                        </label>
+                    </div>
+                  </div>
+                  <div fxFlex="50" fxFlex.xs="100">
+                    <div class="omrs-input-group">
+                        <label class="omrs-input-filled">
+                          <input ngModel #name="ngModel"
+                          name="name" required>
+                          <span class="omrs-input-label">Name</span>
+                            <span *ngIf="name.touched && !name.valid"  class="omrs-input-helper">Enter Name</span>
+                         </label>
+                    </div>
+                  </div>
+                  <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">
+                      
+						 <div class="omrs-input-group">
+                            <label class="omrs-input-underlined">
+                              <input ngModel 
+                              name="email" #em="ngModel" email required>
+                              <span class="omrs-input-label">E-Mail</span>
+                                <span *ngIf="em.touched && !em.valid"  class="omrs-input-helper">Email Required</span>
+                           </label>
+                        </div>    
+                  </div>
+                  <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">
+                    <label class="omrs-input-filled">
+                      <span  style="padding-top: 1vw; font-size: 1rem;">Role Of User</span><br>
+                      <select ngModel #role="ngModel"
+                      name="role"  required [(ngModel)]="selectRole">
+                        <option *ngFor="let item of selectOption" [ngValue]="item.role">
+                          {{item.role}}</option>
+                      </select>
+                    </label>  
+                       
+                  </div>
+                  <div [hidden]="editing" fxFlex="38" fxFlex.xs="90" style="padding-top: 1vw;" >
+                    <div class="omrs-input-group" >
+                        <label class="omrs-input-filled"> 
+                          <input ngModel #pass="ngModel" (focusout)="changeInputNew()" [disabled]="editing"
+                          name="pass" type="{{passwordChange}}"  required >
+                          <span class="omrs-input-label">Password</span>
+                          <span *ngIf="pass.touched && !pass.valid"   class="omrs-input-helper">Enter Password</span>
+                        </label>
+                    </div>
+                </div>
+                <div [hidden]="editing" fxFlex="12" fxFlex.xs="10" style="padding-top: 3vw; ">
+                <span toggle="#password-field" (click)="changeInput()" class="fa fa-fw fa-eye field-icon toggle-password"></span><br>
+              </div>
+                <div [hidden]="editing" fxFlex="38" fxFlex.xs="90" style="padding-top: 1vw;" >
+                  <div class="omrs-input-group" >
+                    <label class="omrs-input-filled"> 
+                      <input ngModel #pass2="ngModel" (focusout)="changeInputNew2()" [disabled]="editing"
+                      name="pass2" type="{{passwordChange2}}"  required >
+                      <span class="omrs-input-label">Password2</span>
+                      <span *ngIf="pass2.touched && (pass2.value!=pass.value)" class="omrs-input-helper">Enter the same Password</span>
+                    </label>
+                </div>
+              </div>
+              <div fxFlex="12" fxFlex.xs="10" [hidden]="editing" style="padding-top: 3vw;">
+                <span toggle="#password-field" (click)="changeInput2()" class="fa fa-fw fa-eye field-icon toggle-password"></span><br>
+              </div>
+              <div fxFlex="100" fxFlex.xs="100">
+                <div class="omrs-input-group">
+                  <label class="omrs-input-underlined">
+                    <input ngModel 
+                    name="number1" #number1="ngModel" pattern="[0-9 ]{10}" required>
+                    <span class="omrs-input-label" *ngIf="number1.valid || !number1.touched">Number</span>
+                      <span *ngIf="number1.touched && !number1.valid"  class="omrs-input-helper">Number required( 10 digits )</span>
+                 </label>
+              </div>  
+              </div>
+
+                </div>
+                <div>
+                    <button mat-flat-button ngSubmit 
+                    [disabled]="!f.valid || role.value=='Select the role' || (pass2.value!=pass.value)"
+                     class="button"><span><div *ngIf="editing">Update</div><div *ngIf="!editing">Submit</div> </span></button>
+                </div>
+              </form>
+  </div>
+</div>

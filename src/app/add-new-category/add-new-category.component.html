@@ -1,0 +1,121 @@
+<div *ngIf="loader" style="margin-left: 50%; margin-top: 5%;" [ngStyle.xs]="'margin-left: 40%'">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  
+  <div *ngIf="!loader">
+    <div class="box" style="border: 10px;margin-bottom: 2vw;">
+      <div class="one" style="
+  font-weight: 700;
+  padding-bottom: 2vw;
+  border-radius: 2vw;
+  width: 6vw;
+  padding-top: 5vw;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5vw;"
+  >
+        <div class="flex-container" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.xs="column" fxLayout.sm="column"
+          fxLayout.md="column" *ngIf="!editsuccess">
+          <form (ngSubmit)="onSubmit()" #f="ngForm" >
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+  
+                <div fxFlex="50" fxFlex.xs="100" style="padding-top: 1vw;">
+
+
+                    <h2>Upload Category Image:</h2>
+                    <button mat-button type="button" (click)="uploadMainImage()"  *ngIf="image == ''">
+                      Select Category Image
+                    </button>
+                    <br /><br />
+                    <div *ngIf="image != ''">
+                      <img *ngIf="!editing" [src]="image" style="width: 120px; height: auto;" alt="" />
+                      <img *ngIf="editing" src="https://ecom.superosoftware.com:3443/{{image}}" style="width: 120px; height: auto;" alt="" />
+                      <button mat-icon-button (click)="deleteMainImage()">
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+              <div fxFlex="50" fxFlex.xs="100">
+                <div class="omrs-input-group">
+                  <label class="omrs-input-filled">
+                    <input ngModel #name="ngModel" name="name" required>
+                    <span class="omrs-input-label">Category-Name</span>
+                    <span *ngIf="name.touched && !name.valid" class="omrs-input-helper">Enter Category-Name</span>
+                  </label>
+                </div>
+              </div>
+              <div fxFlex="50" fxFlex.xs="100">
+                <div class="omrs-input-group">
+                <label class="omrs-input-filled">
+                    <span 
+                      style="padding-left: 2vw;padding-top: 1vw; font-size: 1rem;">Status <mat-slide-toggle style="margin-left: 2%;"  [(ngModel)]="status" name="status" ></mat-slide-toggle>  </span><br>
+                    
+                    
+                </label>
+    </div>
+              </div>
+
+              
+              
+            </div>
+            <div>
+              <button mat-flat-button ngSubmit
+                [disabled]="!f.valid || image == ''"
+                class="button" type="submit"><span>Submit </span></button>
+            </div>
+          </form>
+  
+  
+        </div>
+        <div fxLayoutAlign='center center' fxLayout='column' *ngIf="editsuccess">
+          <img src="assets/images/tick.svg" width="200px" alt="">
+          <h2>Category updated successfully</h2>
+          <div class="details">
+            <table border="1">
+              <tr>
+                <td colspan="2">Category Details</td>          
+              </tr>
+              <tr>
+                <td>Category ID</td>
+                <td>{{updateddata._id}}</td>
+              </tr>
+              <tr>
+                <td>Category name</td>
+                <td>{{updateddata.category}}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td *ngIf="updateddata.status == 0">
+                  <span style="background: red;padding: 2% 5%;  text-align:center;border-radius: 20px;color:white;">
+                    Disabled
+                  </span>
+                </td>
+                <td *ngIf="updateddata.status == 1">
+                  <span style="background: green;padding: 2% 5%;text-align:center;border-radius: 20px;color:white;">
+                    Active
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>Category Image</td>
+                <td ><img *ngIf="!imagechange" src="{{updateddata.image}}" width="90px" height="90px" alt="Category Image"
+                  style="border:2px solid whitesmoke" >
+                  <img  *ngIf="imagechange" src="https://ecom.superosoftware.com:3443/{{updateddata.image}}" width="90px" height="90px" alt="Category Image"
+                    style="border:2px solid whitesmoke" ></td>
+              </tr>
+            </table>
+          </div>
+          <br>
+          <div fxLayout.xs='column' fxLayout.sm = 'column' fxLayoutGap='10px'>
+            <button routerLink="../../../home/dashboard" style="background-color: #FFD7B5;" mat-button>Homepage <mat-icon style="margin-bottom: 1%">home</mat-icon></button>
+          <a href="home/category-management/all-categories">  <button style="background-color: #FFD7B5;" mat-button>View all products <mat-icon>launch</mat-icon></button></a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>

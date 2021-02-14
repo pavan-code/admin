@@ -1,0 +1,278 @@
+
+<div class="container" fxLayout='column'> 
+    <div class="cards" fxLayout="column" fxFlex='1 1 auto'>
+            <div fxLayout='column' *ngIf = "data">
+                <h2><b>Orders</b> :</h2>
+                <div fxLayout='row wrap'>
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/order.svg" alt=""></div>
+                            
+                            <mat-card-title>New Orders</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>New orders count :  <span>{{data.newOrdersCount}}
+                                
+                            </span> </p>
+                        </mat-card-content>
+                    </mat-card>
+                    
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/box.svg" alt=""></div>
+
+                            <mat-card-title>Orders waiting for packing :  {{data.newOrdersCount}} </mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of orders </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/tracking.svg" alt=""></div>
+
+                            <mat-card-title>Shipped orders</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of shipped orders </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/courier.svg" alt=""></div>
+                            <mat-card-title>Delivered Orders</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of delivered orders </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/cancel.svg" alt=""></div>
+                            <mat-card-title>Cancelled Orders</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of cancelled orders </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/delivery-failed.svg" alt=""></div>
+                            <mat-card-title>Delivery failed Orders</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of delivery failed orders </p>
+                        </mat-card-content>
+                    </mat-card>
+                </div >
+                <div class="viewmore">
+                    <button mat-button>View all <mat-icon>arrow_forward</mat-icon></button>
+                </div>
+            </div>
+            <br>
+            <div fxLayout='column'>
+                <h2><b>Products</b> :</h2>
+                <div fxLayout='row wrap'>
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/stock.svg" alt=""></div>
+                            <mat-card-title>Total products</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of products </p>
+                        </mat-card-content>
+                    </mat-card>
+                    
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/gift.svg" alt=""></div>
+                            <mat-card-title>Available products</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of Available products </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/out-of-stock.svg" alt=""></div>
+                            <mat-card-title>Out of stock products</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of out of stock products </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card fxFlex='1 1 auto' fxFlex.lg="0 0 32%" fxFlex.md="0 0 32%" fxFlex.sm="1 0 auto" >
+                        <mat-card-header>
+                            <mat-card-title>Temporarily unavailable</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of temporarily unavailable products </p>
+                        </mat-card-content>
+                    </mat-card>                    
+                </div>
+                <div class="viewmore">
+                    <button mat-button>View all <mat-icon>arrow_forward</mat-icon></button>
+                </div>
+            </div>
+            <br>
+            <div fxLayout='column'>
+                <h2><b>Customers</b> :</h2>
+                <div fxLayout='row wrap'>
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/customer.svg" alt=""></div>
+
+                            <mat-card-title>Total customers</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of customers </p>
+                        </mat-card-content>
+                    </mat-card>
+                    
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/active-customer.svg" alt=""></div>
+
+                            <mat-card-title>Active customers</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of active customers</p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/inactive-customer.svg" alt=""></div>
+                            <mat-card-title>Inactive customers</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of inactive customers </p>
+                        </mat-card-content>
+                    </mat-card>                                       
+                </div>
+                <div class="viewmore">
+                    <button mat-button>View all <mat-icon>arrow_forward</mat-icon></button>
+                </div>
+            </div>
+            <br>
+            <div fxLayout='column'>
+                <h2><b>Categories</b> :</h2>
+                <div fxLayout='row wrap'>
+                    <mat-card  fxFlex="0 1 auto" fxFlex.xs='1 1 auto' >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/list.svg" alt=""></div>
+                            <mat-card-title>Total categories</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of categories </p>
+                        </mat-card-content>
+                    </mat-card>                                                                         
+                </div>
+                <div class="viewmore">
+                    <button mat-button>View all <mat-icon>arrow_forward</mat-icon></button>
+                </div>
+            </div>
+            <br>
+            <div fxLayout='column'>
+                <h2><b>Pin codes</b> :</h2>
+                <div fxLayout='row wrap'>
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/pin-code.svg" alt=""></div>
+                            <mat-card-title>Total pin codes in system</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details of pincodes </p>
+                        </mat-card-content>
+                    </mat-card>
+                    
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <div mat-card-avatar><img width="35px" src="assets/images/serviceable.svg" alt=""></div>
+                            <mat-card-title>Serviceable pin code</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details </p>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card  fxFlex="1 1 auto" >
+                        <mat-card-header>
+                            <mat-card-title>Unavailable pin codes</mat-card-title>
+                            
+                        </mat-card-header>  
+                        
+                        <mat-card-content>
+                            <p>Details </p>
+                        </mat-card-content>
+                    </mat-card>                                       
+                </div>
+                <div class="viewmore">
+                    <button mat-button>View all <mat-icon>arrow_forward</mat-icon></button>
+                </div>
+            </div>  
+    </div>
+
+    <div fxLayout='row' fxLayout.xs='column' fxLayoutAlign='space-around none'>
+
+        <div style="width: 350px;">
+            <canvas baseChart 
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+        </canvas>
+        </div>
+        <div style="width: 350px">
+            <canvas baseChart 
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [legend]="pieChartLegend">
+        </canvas>
+        </div>
+    </div>
+
+</div>

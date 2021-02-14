@@ -1,0 +1,91 @@
+
+<div fxLayout="column" *ngIf="dataLength==0">
+  <br><br><br><br>
+  <br><br><br><br>
+  <div fxLayout="column" fxFlex="1 1 50" fxFlex.xs="1 1 30" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center"
+     style="background-color:  #FFD7B5;text-align: center;width:30vw;border-radius: 80px;
+     height:10vw;"
+      [ngStyle.xs]="'width:60vw;height:15vw;'" 
+     >
+      <h1 style="font-size: 5vw;padding-top:10%;padding-bottom: 5%;"
+      [ngStyle.xs]="'padding-top:11%;font-size: 8vw;'">No Category</h1>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="column" *ngIf="dataLength!=0" style="margin-left: 10%;margin-right: 10%;" [ngStyle.xs]="'margin-left: 2%; margin-right: 2%;'">
+  <br>
+  <div *ngIf = "dataSource.data.length <= 0" class="spinner">
+
+    <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Loading... Please wait</h2>
+  </div>
+
+    <h1 style="font-size: 25px;background-color: #FFD7B5;width:max-content;padding-left:1.5%;padding-right:1.5%;
+    padding-top:0.5%;padding-bottom: 0.5%;border-radius: 30px;height: max-content;font-weight: bold;"
+    [ngStyle.xs]="'font-size:20px;padding-left:3%;padding-right:3%;'">All Categories</h1>
+    <div fxFlex="1 1 40"  fxFlex.sm="1 1 20" fxHide.xs></div>
+    <div fxLayout="row" fxLayoutGap="2%"  fxLayout.xs="column">
+            <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 40%;" [ngStyle.xs]="'width:100%;'">
+                <mat-label>Select Status</mat-label>
+                <mat-select>
+                    
+                  <mat-option value="option1" (click)="activestatus()">Active</mat-option>
+                  <mat-option value="option2" (click)="disabledstatus()">Disabled</mat-option>
+                  <mat-option value="option3" (click)="allstatus()">All</mat-option>
+                  
+                </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 60%;" [ngStyle.xs]="'width:100%;'">
+        <mat-label> <mat-icon>search</mat-icon> Find Category</mat-label>
+        <input matInput #filter (keyup)="applyFilter($event)" >
+      </mat-form-field>
+  </div>
+  <br>
+  <mat-table [dataSource]="dataSource"  matSort >
+
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef style="font-size: 150%;" [ngStyle.xs]="'font-size: 90%'"> <b>Category Image</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index;" data-label="image">
+        <div >
+        <img src="https://ecom.superosoftware.com:3443/{{row.image}}" width="90px" height="90px" alt="Category Image"
+        style="border:2px solid whitesmoke" >
+    </div> 
+    </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef style="font-size: 130%;" [ngStyle.xs]="'font-size: 90%'" > <b >Category Name</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index" data-label="category" >
+       <span style="font-size: 150%;" [ngStyle.xs]="'font-size: 90%'">{{row.category}}</span> 
+      </mat-cell>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header style="font-size: 150%;" [ngStyle.xs]="'font-size: 90%'"> <b>Status</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index;" data-label="status">
+        <span *ngIf="row.status==0" style="background: red;width:65px;text-align:center;border-radius: 20px;color:white;">
+          Disabled
+        </span>
+        <span *ngIf="row.status==1" style="background: green;width:65px;border-radius: 20px;color:white;text-align:center">
+          Active
+        </span>
+
+      </mat-cell>
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No Category found</td>
+    </tr>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i=index;" (click)="categoryDetails(i)">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+  [length]="dataSource?.data.length"
+  [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 25, 100]"></mat-paginator>
+</div>

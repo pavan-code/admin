@@ -1,0 +1,112 @@
+<div class="container">
+    <h3>Page Management > <b>Our all products</b></h3>
+    <br>
+    <div fxLayout='row wrap'  fxLayoutAlign='space-between none' fxLayoutGap='10px'>
+
+        <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;">
+          <mat-label>Category</mat-label>
+          <mat-select (selectionChange)="filterCategory($event.value)">
+            <mat-option value="All">All</mat-option>
+            <mat-option *ngFor = "let item of categories" value = "{{item}}">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;">
+          <mat-label>Stock availability</mat-label>
+          <mat-select (selectionChange)="filterStatus($event.value)">
+            <mat-option value="All">All</mat-option>
+            <mat-option value="Available">Available</mat-option>
+            <mat-option value='Partially out of stock'>Partially out of stock</mat-option>
+            <mat-option value='Completely out of stock'>Completely out of stock</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;">
+          <mat-label>Status</mat-label>
+          <mat-select (selectionChange)="status($event.value)">
+            <mat-option value="All">All</mat-option>
+            <mat-option value='available'>Available</mat-option>
+            <mat-option value='temporarily unavailable'>Temporarily unavailable</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;">
+          <mat-label> <mat-icon>search</mat-icon> Find product</mat-label>
+          <input matInput #filter (keyup)="applyFilter($event)" >
+        </mat-form-field>
+
+    </div>
+
+    <div *ngIf = "show" class="spinner">
+      <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Getting our all products... Please wait</h2>
+    </div>
+
+    <div *ngIf = "!show">
+      <mat-table [dataSource] = "dataSource" matSort>
+        <ng-container matColumnDef = "image">
+          <mat-header-cell *matHeaderCellDef fxHide.xs> <b>#image</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="product image" [routerLink]="['/home/product-management/product-detail', row._id]">
+            <img src="{{config}}{{row.productImage}}" width="50px" alt="">
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef = "title" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>product</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="name" [routerLink]="['/home/product-management/product-detail', row._id]">
+            {{row.title}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef = "category">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>category</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="category" [routerLink]="['/home/product-management/product-detail', row._id]">
+            {{row.category}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef = "rating">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>rating</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="rating" [routerLink]="['/home/product-management/product-detail', row._id]">
+            {{row.rating}}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef = "availability">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>status</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="availability" [routerLink]="['/home/product-management/product-detail', row._id]">
+            
+            <span style="background-color: #1ff31f;" *ngIf = "row.availability == 'Available'">
+              {{row.availability}} </span>
+            <span style="background-color: #20b1fb;" *ngIf = "row.availability == 'Partially out of stock'">
+              {{row.availability}} </span>
+            <span style="background-color: #1f1c1c; color: white;" *ngIf = "row.availability == 'Unavailable'">
+              {{row.availability}} </span>
+            <span style="background-color: yellow; " *ngIf = "row.availability == 'Temporarily unavailable'">
+              {{row.availability}} </span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef = "actions">
+          <mat-header-cell *matHeaderCellDef fxHide.xs> <b>actions</b> </mat-header-cell>
+          <mat-cell *matCellDef = "let row" data-label="delete product">
+            <button (click) = "deleteItem(row._id)" mat-icon-button color="warn" ><mat-icon>delete</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" style="text-align: center;" >No Products found</td>
+        </tr>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 25, 100]"></mat-paginator>
+    </div>
+      
+</div>

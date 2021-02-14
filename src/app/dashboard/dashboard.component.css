@@ -1,0 +1,30 @@
+mat-card {
+    border: 1px solid black;
+    width: 250px;
+    margin: 5px;
+    background: #FFD7B5;
+    height: 150px;
+    cursor: pointer;
+    /* padding: 5px; */
+}
+mat-card-header {
+    text-align: left;
+}
+.container {
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 820px;
+    border: 1px solid black;
+    border-radius: 8px;
+    /* height: 100vh; */
+}
+mat-card-actions {
+    bottom: 0;
+}
+.users {
+    background: #4198c9;
+}
+.viewmore {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,0 +1,93 @@
+<div
+  class="container"
+  fxFlex
+  fxLayout="column"
+  fxLayoutAlign="space-around none">
+  <div fxLayout="column" style="margin-left: 5%;margin-right: 5%;">
+    <div *ngIf = "loading" class="spinner">
+      <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Loading... Please wait</h2>
+    </div>
+    <div fxLayout="row"  fxLayout.xs="column" fxLayoutAlign="space-between none">
+      <h3>Customer Management > <b>All Customers</b></h3>
+      <div>
+        <span style="font-weight: bold;">Add New Customer</span>
+        <button
+        type="button"
+        mat-icon-button
+        style="height:40px;background-color:#FFD7B5;"
+        [routerLink]="['/home/customer-management/add-customer']"
+        ><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+    <br>
+    <div fxLayout="row"  fxLayout.xs="column" fxLayoutAlign="space-between none">
+      <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;" [ngStyle.xs]="'width:100%;'">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option value="All" (click)="allStatus()">All</mat-option>
+          <mat-option value='active' (click)="activestatus()">Active</mat-option>
+          <mat-option value='disabled' (click)="disableStatus()">Disabled</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div fxFlex="1 1 2" fxHide.xs></div>
+      <mat-form-field fxFlex='1 1 auto' appearance='outline' style="width: 150px;" [ngStyle.xs]="'width:100%;'">
+        <mat-label> <mat-icon>search</mat-icon> Find Customer</mat-label>
+        <input matInput #filter (keyup)="applyFilter($event)" >
+      </mat-form-field>
+    </div>
+    <div style="box-shadow: 0px 2px 2px rgba(0,0,0,0.25);">
+      <mat-table [dataSource]="dataSource"  matSort>
+
+        <ng-container matColumnDef="Full Name">
+          <mat-header-cell *matHeaderCellDef> <b>Full Name</b> </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Full Name">
+            {{row.firstName}} {{row.lastName}}
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Mobile">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Mobile</b> </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Mobile"> {{row.mobile}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Email</b> </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Email"> {{row.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Status</b> </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Status">
+            <span *ngIf="!row.status"
+             style="background: red;width:5vw;text-align:center;border-radius: 10vw;
+             color:white;font-size:1vw;font-family:Poppins;"
+             [ngStyle.xs]="'width:10vw;border-radius: 10vw;font-size:2.5vw;'">
+              Disabled
+            </span>
+            <span *ngIf="row.status"
+            style="background: green;width:5vw;border-radius: 10vw;
+            color:white;text-align:center;font-size:1vw;font-family:Poppins;"
+            [ngStyle.xs]="'width:10vw;border-radius: 10vw;font-size:2.5vw;'">
+              Active
+            </span>
+
+          </mat-cell>
+        </ng-container>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No customer found</td>
+        </tr>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"
+        [routerLink]="['/home/customer-management/view-customer', row._id]">
+        </mat-row>
+      </mat-table>
+      <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 25, 100]"
+      (page)="click($event)"></mat-paginator>
+    </div>
+  </div>
+</div>

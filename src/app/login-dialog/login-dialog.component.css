@@ -1,0 +1,24 @@
+.container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 16px;
+    border: 0.1px solid black;
+    border-radius: 8px;
+}
+
+button {
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+}
+.spinner {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+    
+    margin: 0 auto;
+  }

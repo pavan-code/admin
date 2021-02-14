@@ -1,0 +1,132 @@
+<div fxLayout="column" *ngIf="dataLength==0">
+  <br><br><br><br>
+  <br><br><br><br>
+  <div fxLayout="column" fxFlex="1 1 auto" fxFlex.xs="1 1 auto" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center"
+     style="background-color:  #FFD7B5;text-align: center;width:30vw;border-radius: 80px;
+     height:10vw;"
+      [ngStyle.xs]="'width:60vw;height:15vw;'"
+     >
+      <h1 style="font-size: 5vw;padding-top:10%;padding-bottom: 5%;"
+      [ngStyle.xs]="'padding-top:11%;font-size: 8vw;'">No Users</h1>
+    </div>
+  </div>
+</div>
+<div>
+<div fxLayout="column" *ngIf="dataLength!=0" style="margin-left: 5%;margin-right: 5%;">
+  <br>
+  <div *ngIf = "dataSource.data.length <= 0" class="spinner">
+
+    <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Loading... Please wait</h2>
+  </div>
+  <div fxLayout="row"  fxLayout.xs="column">
+    <h1 style="font-size: 1vw;background-color: #FFD7B5;padding-left: 1%;padding-right: 1%;
+    text-align: center;
+    margin-top: 0.8vw;
+    width: 100%;
+    padding-top:0.5%;padding-bottom: 0.5%;border-radius: 30px;height: max-content;font-weight: bold;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.25);"
+    [ngStyle.xs]="'width:50%; font-size:4vw;'">All Users</h1>
+    <div fxFlex="1 0.5 1 0.5 1 0.5 auto"  fxFlex.sm="1 0.5 1 0.5 1 0.5 auto" fxHide.xs></div>
+    <div fxFlex="1 0.5 1 0.5 1 0.5 auto"  fxFlex.sm="1 0.5 1 0.5 1 0.5 auto">
+      <mat-form-field fxFlex='1 0.5 1 0.5 auto' appearance='outline' style="width: 20%;" [ngStyle.xs]="'width:100%;'">
+        <mat-label>Select Role</mat-label>
+        <mat-select>
+          <mat-option value="option1" (click)="admin()">Admin</mat-option>
+          <mat-option value="option2" (click)="user()">User</mat-option>
+          <mat-option value="option3" (click)="superadmin()">Superadmin</mat-option>
+          <mat-option value="option4" (click)="allstatus()">Both</mat-option>
+          
+        </mat-select>
+</mat-form-field>
+    </div>
+    <div fxFlex="1 0.5 1 0.5 1 0.5 auto"  fxFlex.sm="1 1 autto" fxHide.xs></div>
+    <div fxFlex="1 0.5 1 0.5 1 0.5 auto"  fxFlex.sm="1 1 autto">
+      <mat-form-field fxFlex='1 0.5 1 0.5 auto' appearance='outline' style="width: 20%;" [ngStyle.xs]="'width:100%;'">
+        <mat-label>Select Status</mat-label>
+        <mat-select>
+          <mat-option value="option1" (click)="activestatus()">Active</mat-option>
+          <mat-option value="option2" (click)="disabledstatus()">Disabled</mat-option>
+          <mat-option value="option3" (click)="allstatus()">Both</mat-option>
+          
+        </mat-select>
+</mat-form-field>
+    </div>
+    <div fxFlex="1 0.5 1 0.5 1 0.5 auto"  fxFlex.sm="1 1 autto"></div>
+    <mat-form-field fxFlex='1 0.5 1 0.5 auto' appearance='outline' style="width: 150px;" [ngStyle.xs]="'width:100%;'">
+     
+     
+      <mat-label> <mat-icon>search</mat-icon> Find User</mat-label>
+      <input matInput #filter (keyup)="applyFilter($event)" >
+    </mat-form-field>
+  </div>
+  <br>
+
+  <mat-table [dataSource]="dataSource"  matSort style="box-shadow: 0 2px 2px rgba(0,0,0,0.25);">
+    <ng-container matColumnDef="Full Name">
+      <mat-header-cell *matHeaderCellDef> <b>Full Name</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" data-label="Full Name">
+         {{row.name}}
+       
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Username</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" data-label="Username">
+        {{row.username}}
+       
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>role</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" data-label="role">
+      
+        {{row.role}}
+  
+
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Mobile">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Mobile</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" data-label="Mobile">
+       
+        {{row.mobile}} </mat-cell>
+      
+    </ng-container>
+
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Email</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" data-label="Email">
+          {{ (row.email.length>15)? (row.email | slice:0:15)+' ....':(row.email) }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Status</b> </mat-header-cell>
+      <mat-cell *matCellDef="let row;let i=index" (click)="changeState(i)" data-label="Status">
+        <span  *ngIf="row.status==0" style="background: red;width:65px;text-align:center;border-radius: 20px;color:white;">
+          Disabled
+        </span>
+        <span *ngIf="row.status==1"
+        style="background: green;width:65px;border-radius: 20px;color:white;text-align:center;font-size:15px;font-family:Poppins;">
+          Active
+        </span>
+      </mat-cell>
+    
+    </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No Products found</td>
+    </tr>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"  fxHide.xs></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns; let i=index;" (click)="userDetails(i)">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+  [length]="dataSource?.data.length"
+  [pageSize]="5" [pageSizeOptions]="[1, 5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>

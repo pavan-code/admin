@@ -1,0 +1,77 @@
+<div class="container" fxLayoutGap='20px' fxLayout='column'>
+    <div *ngIf = "!data" class="spinner">
+        <mat-spinner strokeWidth='3'></mat-spinner>
+        <h3>Hang on there... <br>Getting Category details</h3>               
+    </div>
+    
+    <div *ngIf="data" fxLayout='column' fxLayoutGap='20px'>
+        <div fxLayout='row' fxLayout.xs="column" fxLayoutAlign='space-between none'>
+            <h3>Category Management > <b>Category details > {{data._id}} </b></h3>
+            <button mat-stroked-button (click)="editing()"><mat-icon>edit</mat-icon> Edit Category details</button>
+        </div>
+        <div fxLayout='row' fxLayout.xs = 'column' fxLayoutGap='30px'>
+            <div fxFlex='0 1 40%'>
+                <img fxFlex='1 1 100%' src="https://ecom.superosoftware.com:3443/{{data.image}}" style="width: 100%; height: auto;"  alt="product main image">
+            </div>
+
+            <div fxFlex='1 1 60%' class="details">
+                <h2 style="font-size: 210%;">Category Details :  </h2>
+                <br>
+                <h3 style="font-size: 150%;"><b>Category Name :&nbsp; {{data.category}} </b>
+                
+                </h3>
+                <br>
+                <h3 style="font-size: 150%;"><b>Category Status :&nbsp;<span *ngIf="data.status==0" class="disable">
+                    Disabled
+                  </span>
+                  <span *ngIf="data.status==1" class="active">
+                    Active
+                  </span> </b>  </h3>
+                <br>
+                
+            </div>
+        </div>
+
+    </div> 
+  
+</div>
+<div class="container1" *ngIf="data">
+    <h2><b>Products</b> :</h2>
+    <div fxLayout='row wrap'>
+        <mat-card  fxFlex="1 1 auto" >
+            <mat-card-header>
+                <div mat-card-avatar><img width="35px" src="assets/images/stock.svg" alt=""></div>
+                <mat-card-title>Total products</mat-card-title>
+                
+            </mat-card-header>  
+            
+            <mat-card-content>
+                <p>Details of products </p>
+            </mat-card-content>
+        </mat-card>
+        
+        <mat-card  fxFlex="1 1 auto" >
+            <mat-card-header>
+                <div mat-card-avatar><img width="35px" src="assets/images/gift.svg" alt=""></div>
+                <mat-card-title>Available products</mat-card-title>
+                
+            </mat-card-header>  
+            
+            <mat-card-content>
+                <p>Details of Available products </p>
+            </mat-card-content>
+        </mat-card>
+
+
+        <mat-card fxFlex='1 1 auto' fxFlex.lg="0 0 32%" fxFlex.md="0 0 32%" fxFlex.sm="1 0 auto" >
+            <mat-card-header>
+                <mat-card-title>Temporarily unavailable</mat-card-title>
+                
+            </mat-card-header>  
+            
+            <mat-card-content>
+                <p>Details of temporarily unavailable products </p>
+            </mat-card-content>
+        </mat-card>                    
+    </div>
+</div>

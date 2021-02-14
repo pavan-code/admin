@@ -1,0 +1,137 @@
+<div class="container" fxLayoutGap='20px' fxLayout='column'>
+    <div *ngIf = "!product" class="spinner">
+        <mat-spinner strokeWidth='3'></mat-spinner>
+        <h3>Hang on there... <br>Getting product details</h3>               
+    </div>
+    
+    <div *ngIf="product" fxLayout='column' fxLayoutGap='20px'>
+        <div fxLayout='row' fxLayout.xs='column' fxLayoutAlign='space-between none'>
+            <h3>Product Management > <b>Product detail > {{product._id}} </b></h3>
+            <button mat-stroked-button [routerLink] = "['/home/product-management/edit-product-details', product._id]" ><mat-icon>edit</mat-icon> Edit product details</button>
+        </div>
+        <div fxLayout='row' fxLayout.xs = 'column' fxLayoutGap='30px'>
+            <div fxFlex='0 1 40%'>
+                <img fxFlex='1 1 100%' src="{{config}}{{product.productImage}}" width="300px" alt="product main image">
+            </div>
+
+            <div fxFlex='1 1 60%' class="details">
+                <div fxLayoutAlign="space-between none">
+                    <span style="font-size: 18px;"><b>Product Details :</b> </span>
+                    <span >
+                        <span class="avail" style="background-color: #1ff31f;" *ngIf = "product.availability == 'Available'">
+                            {{product.availability}} </span>
+                          <span class="avail" style="background-color: #20b1fb;" *ngIf = "product.availability == 'Partially out of stock'">
+                            {{product.availability}} </span>
+                          <span class="avail" style="background-color: #1f1c1c; color: white;" *ngIf = "product.availability == 'Unavailable'">
+                            {{product.availability}} </span>
+                          <span class="avail" style="background-color: yellow; " *ngIf = "product.availability == 'Temporarily unavailable'">
+                            {{product.availability}} </span>
+                    </span> 
+                </div>
+                <h3><b>Product name :</b> {{product.title}} 
+                
+                </h3>
+                <h3><b>Category :</b> {{product.category}} </h3>
+                <h3><b>Rating :</b> {{product.rating}} <mat-icon style="position: relative; top: 5px;">star</mat-icon> </h3>
+                <h3><b>Short Description :</b> {{product.shortDescription}} </h3>
+                <h2>Specifications :</h2>
+                <div *ngFor = "let spec of product.specification">
+                    <h3>{{spec.key}} : {{spec.value}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3><b>Long Description :</b> </h3>{{product.longDescription}}
+            <div>
+                <h2><b>Product Variants :</b></h2>
+                <table border="1">
+                    <tr>
+                        <td fxHide.xs>S.no</td>
+                        <td>Color</td>
+                        <td>Size</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                        <td>Status</td>                
+                    </tr>
+                    <tr *ngFor = "let sub of product.subProducts; let i=index">
+                        <td fxHide.xs>{{ i+1 }} </td>
+                        <td>{{sub.color}} </td>
+                        <td>{{sub.size}} </td>
+                        <td>{{sub.quantity}} </td>
+                        <td>{{sub.price}} </td>
+                        <td>
+                            <span *ngIf = "sub.isAvailable == true">
+
+                                Available variant
+                            </span>
+                            <span *ngIf = "sub.isAvailable == false">
+                                Not exist
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <h2><b>Product side images :</b></h2>
+        <div fxLayout='row wrap' fxLayoutGap='5px' fxLayoutAlign='space-around center'>
+            <span class="image" style="width: 135px;" *ngFor = "let img of product.otherImages">
+                <img src="{{config}}{{img}}" width="130px" alt="other product images">
+            </span>
+        </div>
+    </div>
+    <!-- <div *ngIf = "product" class="product">
+
+        <div>
+            <h2>Product Details :  </h2>
+            <h3><b>Product name :</b> {{product.title}} </h3>
+            <h3><b>Category :</b> {{product.category}} </h3>
+            <h3><b>Short Description :</b> {{product.shortDescription}} </h3>
+            <h3><b>Long Description :</b> {{product.longDescription}} </h3>
+        </div>
+        
+        <div>
+            <h2>Specifications :</h2>
+            <div *ngFor = "let spec of product.specification">
+                <h3>{{spec.key}} : {{spec.value}}</h3>
+            </div>
+            
+        </div>
+        <h2><b>Product availability :</b> {{product.status}} </h2>
+        <h2><b>Rating :</b>{{product.rating}} </h2>
+        
+        <div>
+            <h2><b>Product Variants :</b></h2>
+            <table border="1">
+                <tr>
+                    <td>S.no</td>
+                    <td>Color</td>
+                    <td>Size</td>
+                    <td>Quantity</td>
+                    <td>Price</td>
+                    <td>Status</td>                
+                </tr>
+                <tr *ngFor = "let sub of product.subProducts; let i=index">
+                    <td>{{ i+1 }} </td>
+                    <td>{{sub.color}} </td>
+                    <td>{{sub.size}} </td>
+                    <td>{{sub.quantity}} </td>
+                    <td>{{sub.price}} </td>
+                    <td>{{sub.isAvailable}} </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <h2><b>Product main image :</b></h2>
+            <img src="{{config}}{{product.productImage}}" width="130px" alt="">
+        </div>
+        
+        <div>
+            <h2><b>Product side images :</b></h2>
+            <span *ngFor = "let img of product.otherImages">
+                <img src="{{config}}{{img}}" width="130px" alt="">
+            </span>
+        </div>
+    </div> -->
+</div>

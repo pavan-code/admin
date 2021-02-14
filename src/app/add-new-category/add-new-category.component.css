@@ -1,0 +1,332 @@
+.box {
+    display: flex;
+    margin-top:2%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%; 
+    border-color: black 10px;
+    border: 2vw;
+  }
+  
+  .box2 {
+      width: 90%;
+    display: flex;
+    margin-top: 2%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-color: black;
+    border: 2vw;
+  }
+  
+  .one {
+    border-style: solid;
+    flex: 1.7 1.7 auto;
+    
+  }
+  
+  .two {
+      
+      border-style: solid;
+    flex: 1.7 1.7 auto;
+  }
+  .container {
+    margin-top: 4vw;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+  
+  div.container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      margin-top: 4vw;
+      padding: 2vw;
+      border-radius: 2vw;
+  }
+  
+  .omrs-input-underlined > input.ng-invalid.ng-touched,
+  .omrs-input-filled > input.ng-invalid.ng-touched {
+      background: var(--omrs-color-interaction-minus-two);
+      border-color:red;
+      
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input.ng-invalid.ng-touched+ .omrs-input-label,
+  .omrs-input-filled:not(.omrs-input-danger) > input.ng-invalid.ng-touched + .omrs-input-label {
+      color: red;
+  }
+  
+  :root {
+      --omrs-color-ink-lowest-contrast: rgba(47, 60, 85, 0.18);
+      --omrs-color-ink-low-contrast: rgba(60, 60, 67, 0.3);
+      --omrs-color-ink-medium-contrast: rgba(19, 19, 21, 0.6);
+      --omrs-color-interaction: #1e4bd1;
+      --omrs-color-interaction-minus-two: rgba(73, 133, 224, 0.12);
+      --omrs-color-danger: #b50706;
+      --omrs-color-bg-low-contrast: #eff1f2;
+      --omrs-color-ink-high-contrast: #121212;
+      --omrs-color-bg-high-contrast: #ffffff;
+      
+  }
+  /** END: Non Openmrs CSS **/
+  div.omrs-input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 30vw;
+  }
+  
+  /* Input*/
+  .omrs-input-underlined > input,
+  .omrs-input-filled > input {
+      border: none;
+      border-bottom: 0.125rem solid rgba(0, 0, 0, 0.589);
+      width: 100%;
+      height: 2rem;
+      font-size: 1.0625rem;
+      padding-left: 0.875rem;
+      line-height: 147.6%;
+      padding-top: 0.825rem;
+      padding-bottom: 0.5rem;
+  }
+  
+  .omrs-input-underlined > input:focus,
+  .omrs-input-filled > input:focus {
+      outline: none;
+  }
+  
+  .omrs-input-underlined > .omrs-input-label,
+  .omrs-input-filled > .omrs-input-label {
+      position: absolute;
+      top: 2vw;
+      line-height: 100%;
+      color: var(--omrs-color-ink-medium-contrast);
+      transition: top .2s;
+  }
+  
+  .omrs-input-underlined > svg,
+  .omrs-input-filled > svg {
+      position: absolute;
+      top: 0.9375rem;
+      right: 0.875rem;
+      fill: var(--omrs-color-ink-medium-contrast);
+  }
+  
+  .omrs-input-underlined > .omrs-input-helper,
+  .omrs-input-filled > .omrs-input-helper {
+      font-size: 0.9375rem;
+      color: var(--omrs-color-ink-medium-contrast);
+      letter-spacing: 0.0275rem;
+      margin: 0.125rem 0.875rem;
+  }
+  
+  .omrs-input-underlined > input:hover,
+  .omrs-input-filled > input:hover {
+      background: var(--omrs-color-interaction-minus-two);
+      border-color: #FFD7B5;
+      
+  }
+  
+  .omrs-input-underlined > input:focus + .omrs-input-label,
+  .omrs-input-underlined > input:valid + .omrs-input-label,
+  .omrs-input-filled > input:focus + .omrs-input-label,
+  .omrs-input-filled > input:valid + .omrs-input-label {
+      top: 0;
+      font-size: 0.9375rem;
+      margin-bottom: 1vw;
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus + .omrs-input-label,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
+      color: #FFD7B5;
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus {
+      border-color: var(--omrs-color-interaction);
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
+      fill: var(--omrs-color-ink-high-contrast);
+  }
+  
+  /** DISABLED **/
+  
+  .omrs-input-underlined > input:disabled {
+      background: var(--omrs-color-bg-low-contrast);
+      cursor: not-allowed;
+  }
+  
+  .omrs-input-underlined > input:disabled + .omrs-input-label,
+  .omrs-input-underlined > input:disabled ~ .omrs-input-helper{
+      color: var(--omrs-color-ink-low-contrast);
+  }
+  
+  .omrs-input-underlined > input:disabled ~ svg {
+      fill: var(--omrs-color-ink-low-contrast);
+  }
+  
+  
+  /** DANGER **/
+  
+  .omrs-input-underlined.omrs-input-danger > .omrs-input-label, .omrs-input-underlined.omrs-input-danger > .omrs-input-helper,
+  .omrs-input-filled.omrs-input-danger > .omrs-input-label, .omrs-input-filled.omrs-input-danger > .omrs-input-helper{
+      color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > svg {
+      fill: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > input {
+      border-color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-underlined > input {
+      background: var(--omrs-color-bg-high-contrast);
+  }
+  .omrs-input-filled > input {
+      background: var(--omrs-color-bg-low-contrast);
+  }
+  .button {
+      border-radius: 1vw;
+      background-color: #FFD7B5;
+      border: none;
+      color: black;
+      text-align: center;
+      font-size: 0.9375rem;
+      padding: 0.5vw;
+      margin-top: 4vw;
+      width: 7rem;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
+    
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+    
+    .button span:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -0.5vw;
+      transition: 0.5s;
+    }
+    
+    .button:hover span {
+      padding-right: 2vw;
+      font-weight: 800;
+    }
+    
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+    td {
+      width: 140px;
+      height: 30px;
+      text-align: center;
+      padding: 5px;
+      font-weight: bold;
+    }
+    table{
+      width: 60vw;
+    }
+    a{
+      text-decoration: none !important;
+      color: black;
+    }
+    @media only screen and (min-width: 900px) {
+        select {
+      height:auto;
+       width: 90%;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+  
+      background-color: #FFD7B5;
+      border: none;
+      border-bottom: 1px solid black;
+      color: black;
+      padding-left: 2vw;
+      padding-top: 1vw;
+      padding-bottom: 1vw;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      border-radius: 1vw;
+    }
+  }
+  
+    @media only screen and (max-width: 900px) {
+      div.omrs-input-group {
+          margin-bottom: 1.5rem;
+          position: relative;
+          width: 90%;
+        }
+      .wid{
+          width: 100vw;
+      }
+      
+      select {
+          height: auto;
+          width: 90%;
+          margin-bottom: 5vw;
+          font-size: 1rem;
+          font-weight: bold;
+          cursor: pointer;
+          margin-top: 1vw;
+          background-color: #FFD7B5;
+          border-bottom: 0.2vw solid black;
+          color: black;
+          height: auto;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border-radius: 6vw;
+          padding-left: 5vw;
+      padding-top: 3vw;
+      padding-bottom: 2.5vw;
+        }
+    }
+  
+  
+    .lds-ripple {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .lds-ripple div {
+      position: absolute;
+      border: 4px solid black;
+      opacity: 1;
+      border-radius: 50%;
+      animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    .lds-ripple div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    @keyframes lds-ripple {
+      0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+      }
+      100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+      }
+    }
+    

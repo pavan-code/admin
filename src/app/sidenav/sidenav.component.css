@@ -1,0 +1,58 @@
+.mat-sidenav-container {
+    
+    height: 100vh;
+    overflow-y: auto;
+}
+mat-sidenav-content {   
+    
+    height: auto;
+}
+.mat-sidenav {
+    position: fixed;
+    width: 300px;
+    background: #FFD7B5;
+
+}
+mat-expansion-panel {
+    background: #FFD7B5;
+
+}
+
+mat-toolbar {
+    /* width: calc(100% - 300px); */
+    z-index: 10;
+    position: fixed;       
+    background: #FFD7B5;
+  
+}
+.breadcrumbs {
+    height: 30px;
+    /* margin-bottom: 10px; */
+    /* border-bottom: 1px solid black; */
+}
+.mat-button {
+    width: 100%;
+    text-align: left;
+}
+.profile {
+    width: auto;
+}
+.menu {
+    min-width: 34px;
+    padding: 2px 5px;
+    margin: 10px;
+}
+.image {
+    
+    margin: 0 auto;
+        width: 100%;
+        max-width: 180px;
+        height: auto;
+        left: 50%;
+}
+.container {
+    
+    
+    padding-top: 80px;
+    
+}

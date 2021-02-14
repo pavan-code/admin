@@ -1,0 +1,70 @@
+<h2 mat-dialog-title *ngIf = "!shippingDetails">Change Order Status</h2>
+<h2 mat-dialog-title *ngIf = "currStat == 'shipped' && shippingDetails">Update Shipping Details</h2>
+
+<mat-dialog-content>
+
+    <div class="packed" *ngIf = "currStat == 'confirmed'">
+        <mat-checkbox (change)="update($event)">Mark Order as Packed</mat-checkbox> <br>
+        <button [disabled] = "disableFlag" mat-raised-button (click)="packIt()">Save Changes</button>
+    </div>
+
+    <div class="shipped" *ngIf = "currStat == 'packed'">
+        <mat-checkbox (change)="updateShip($event)">Mark Order as Shipped</mat-checkbox>
+        <br>
+        <form *ngIf = "formFlag" [formGroup]="shipForm">
+            <h3>Shipping Details</h3>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>Courier Name</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field> <br>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>AWB</mat-label>
+                <input type="text" matInput formControlName="awb">
+            </mat-form-field> <br>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>Courier Website</mat-label>
+                <input type="text" matInput formControlName="website">
+            </mat-form-field> 
+        </form>
+        <br>
+        <button [disabled] = "!formFlag" mat-raised-button (click)="shipIt()">Save Changes</button>
+    </div>
+
+    <div class="shipped" *ngIf = "currStat == 'shipped' && shippingDetails">
+        <!-- <mat-checkbox [checked]="shipForm.isDetails" (change)="updateShip($event)">Mark Order as Shipped</mat-checkbox> -->
+        <br>
+        <form [formGroup]="shipForm">
+            <h3>Shipping Details</h3>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>Courier Name</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field> <br>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>AWB</mat-label>
+                <input type="text" matInput formControlName="awb">
+            </mat-form-field> <br>
+            <mat-form-field appearance='outline' style="width: 100%;">
+                <mat-label>Courier Website</mat-label>
+                <input type="text" matInput formControlName="website">
+            </mat-form-field> 
+        </form>
+        <br>
+        <button mat-raised-button (click)="updateShipDetails()">Save Changes</button>
+    </div>
+
+    <div class="delivered" *ngIf = "currStat == 'shipped' && !shippingDetails">
+        <mat-checkbox (change)="updateDel($event)">Mark Order as Delivered</mat-checkbox> <br>
+        <br>
+        <div *ngIf = "!delFlag" [formGroup]="formGroup">
+            <mat-form-field>
+              <input matInput [ngxMatDatetimePicker]="picker1" 
+              placeholder="Choose delivery date" formControlName="date" [min]="currDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+            </mat-form-field>
+          </div>
+        <button [disabled] = "delFlag" (click)="deliverIt()" mat-raised-button>Save Changes</button>
+    </div>
+
+    
+</mat-dialog-content>

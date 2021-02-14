@@ -1,0 +1,163 @@
+.container {
+  position: relative;
+  max-width: 90%;
+  margin-left: 5%;
+  margin-right:5%;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  padding: 20px;
+
+}
+
+.full-width {
+  width: 100%;
+}
+.half-width {
+  min-width: 320px;
+}
+
+.quarter-width {
+  min-width: 80px;
+  margin: 0 1% 0 0;
+}
+.spec-width {
+  min-width: 320px;
+}
+
+.form {
+  border: 1px solid gray;
+}
+.deleteIcon {
+  position: relative;
+  opacity: 0;
+}
+.imageContainer {
+  position: relative;
+  width: 80px;
+}
+.images {
+  height: auto;
+}
+
+.imageContainer:hover .deleteIcon {
+  opacity: 1;
+  font-size: 18px;
+}
+img {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.spinner {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+
+  margin: 0 auto;
+}
+img {
+  border: none;
+  width: 150px;
+}
+
+
+
+
+
+span {
+  padding: 8px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  /* font-size: 16px; */
+}
+mat-header-row, mat-paginator {
+background-color: #FFD7B5;
+}
+
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+padding-left: 24px;
+}
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+padding-right: 24px;
+}
+.mat-cell {
+padding-top: 8px;
+padding-bottom: 8px;
+padding:8px;
+font-size:1vw;
+}
+.spinner {
+margin: 0 auto;
+text-align: center;
+}
+.mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+
+margin: 0 auto;
+}
+
+mat-row {
+cursor: pointer;
+}
+
+mat-row:hover{
+  box-shadow: 0 10px 10px rgba(0,0,0,0.25);
+
+}
+
+@media screen and (max-width: 768px) {
+
+
+/*  Enable this to hide header
+.mat-table .mat-header-cell {
+
+  border: 10px solid;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+*/
+.mat-table .mat-row {
+  border-bottom: 5px solid #ddd;
+  padding: 15px;
+  display: block;
+  height: 300px;
+  flex-direction: column;
+}
+
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+  padding-right: 10px;
+}
+
+.mat-table .mat-cell {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  font-size: 1em;
+  text-align: right;
+  /* font-weight: bold; */
+  /* height:30px; */
+  /* margin-bottom: 2%; */
+
+}
+.mat-table .mat-cell:before {
+
+  content: attr(data-label);
+  float: left;
+
+  text-transform: uppercase;
+  font-weight: bold;
+
+  font-size: .85em;
+}
+.mat-table .mat-cell:last-child {
+  border-bottom: 0;
+}
+
+mat-cell:first-of-type{
+  padding-left: 10px;
+}
+}

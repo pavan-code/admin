@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="header">
+        <h2>Login</h2>
+    </div>
+    <div *ngIf = "show" class="spinner">
+        <mat-spinner strokeWidth='2' diameter='110'></mat-spinner>
+        <div>
+          <h3>Please wait... <br> We are letting you in...</h3>
+        </div>       
+      </div>
+    <form *ngIf= "!show" [formGroup]="login">
+        
+        <mat-form-field appearance='outline' style="width: 100%;">
+            <mat-label>Username :</mat-label>
+            <input type="text" matInput formControlName= "username">
+            <mat-error *ngIf = "formErrors.username">
+                {{formErrors.username}}
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance='outline' style="width: 100%;">
+            <mat-label>Password :</mat-label>
+            <input type="password" matInput (keyup.enter)="Login()" formControlName= "password">
+            <mat-error *ngIf = "formErrors.password">
+                {{formErrors.password}}
+            </mat-error>
+        </mat-form-field>
+        <button type="button" style="background-color: #FFD7B5;" (click)="Login()" [disabled]="login.invalid" mat-raised-button>Login</button>
+    </form>
+    <br>
+</div>

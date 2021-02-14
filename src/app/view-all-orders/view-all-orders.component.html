@@ -1,0 +1,117 @@
+<div class="container">
+    <h3>Order Management > <b>All orders</b></h3>
+  <mat-form-field appearance="outline">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" />
+      <input matEndDate placeholder="End date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field appearance='outline'>
+    <mat-label>Status</mat-label>
+    <mat-select (selectionChange)="filterStatus($event.value)">
+      <mat-option value="All">All</mat-option>
+      <mat-option value='Failed'>Failed</mat-option>
+      <mat-option value='Pending'>Pending</mat-option>
+      <mat-option value='Placed'>Placed</mat-option>
+      <mat-option value='Confirmed'>Confirmed</mat-option>
+      <mat-option value='Packed'>Packed</mat-option>
+      <mat-option value='Shipped'>Shipped</mat-option>
+      <mat-option value='Cancelled'>Cancelled</mat-option>
+      <mat-option value='Delivered'>Delivered</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf = "show" class="spinner">
+  
+    <h2> <mat-spinner strokeWidth='5' diameter='100'></mat-spinner>Loading... Please wait</h2>
+  </div>
+  <mat-table *ngIf ="dataSource" matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="image">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>#image</b></mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <div>          
+          <img src="{{config}}{{row.productImage}}" width="50px" alt="">
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>OrderID/SubID</b></mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <div>
+          <p>{{row.orderID}} </p>
+        <small> {{row.subOrderID}} </small>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="orderdate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Date</b></mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.orderCreatedOn | slice:0:10 }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Product details</b></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div>
+          <p> {{row.productName}} </p>
+          <p> size &nbsp; : {{row.size}} <br> color : {{row.color}}</p>
+        </div>  
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Category</b></mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.category }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="adddetails">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> <b>Price/Quantity</b></mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+        <div>
+          <p>{{row.totalPrice}} </p>
+          <p>{{row.quantity}} </p>
+        </div>  
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef = "payment">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > <b>Payment Gateway/Mode</b></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <div>
+              <p>{{row.paymentGateway}}</p>
+              <p>{{row.paymentMode}}</p>
+            </div>
+
+
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef = "status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header > <b>Order Status</b></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <div>
+              <span  style="background-color: rgb(255, 28, 28); color: white" *ngIf = "row.itemStatus == -1">Failed</span>
+              <span  style="background-color: rgb(230, 230, 0); color: black" *ngIf = "row.itemStatus == 0">Pending</span>
+              <span  style="background-color: rgb(67, 180, 255); color: white" *ngIf = "row.itemStatus == 1">Placed</span>
+              <span style="background-color: rgb(111, 255, 111); color: black" *ngIf = "row.itemStatus == 2">Confirmed</span>
+              <span style="background-color: rgb(255, 170, 43); color: white" *ngIf = "row.itemStatus == 3">Packed</span>
+              <span style="background-color: rgb(8, 15, 199); color: white" *ngIf = "row.itemStatus == 4">Shipped</span>
+              <span style="background-color: rgb(255, 28, 28); color: white" *ngIf = "row.itemStatus == 10">Cancelled</span>
+              <span style="background-color: rgb(0, 140, 0); color: white" *ngIf = "row.itemStatus == 20">Delivered</span>
+            </div>
+
+
+        </mat-cell>
+      </ng-container>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No Orders found</td>
+    </tr>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="['/home/order-management/order-details', row.orderID, row.subOrderID]" > </mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+  [length]="dataSource?.data.length"
+  [pageSize]="10" [pageSizeOptions]="[1, 5, 10, 25, 100]"></mat-paginator>
+</div>
