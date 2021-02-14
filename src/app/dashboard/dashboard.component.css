@@ -2,7 +2,7 @@ mat-card {
     border: 1px solid black;
     width: 250px;
     margin: 5px;
-    background: #FFD7B5;
+    background: #e9c46a;
     height: 150px;
     cursor: pointer;
     /* padding: 5px; */
@@ -16,6 +16,7 @@ mat-card-header {
     max-width: 820px;
     border: 1px solid black;
     border-radius: 8px;
+    background-color: #f5faff;
     /* height: 100vh; */
 }
 mat-card-actions {

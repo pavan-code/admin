@@ -51,7 +51,7 @@ export class ViewAllCustomersComponent implements OnInit {
 
     }, err => {
       this.loading = false;
-      this.openSnackbar('Some error occured while retrieving', 10000);
+      this.openSnackbar('Some error occured while retrieving', 2000);
     });
   }
 

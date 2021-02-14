@@ -76,8 +76,18 @@ export class DealOfTheDayComponent implements OnInit, AfterViewInit {
         this.dataSource.sort = this.sort;
       }, 1000);
         
+    }, err => {
+      this.show = false;
+      this.openSnackbar('Some error occured while retrieving', 2000);
     })
 
+  }
+  openSnackbar(message, duration: number): any {
+    this.snackbar.open(message, 'close', {
+      duration,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
   }
 
   ngAfterViewInit(): void {

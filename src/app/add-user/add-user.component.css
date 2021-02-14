@@ -124,7 +124,7 @@ div.omrs-input-group {
 .omrs-input-underlined > input:hover,
 .omrs-input-filled > input:hover {
 	background: var(--omrs-color-interaction-minus-two);
-	border-color: #FFD7B5;
+	border-color: #9ec1a3;
 	
 }
 
@@ -139,7 +139,7 @@ div.omrs-input-group {
 
 .omrs-input-underlined:not(.omrs-input-danger) > input:focus + .omrs-input-label,
 .omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
-	color: #FFD7B5;
+	color: #9ec1a3;
 }
 
 .omrs-input-underlined:not(.omrs-input-danger) > input:focus,
@@ -192,7 +192,7 @@ div.omrs-input-group {
 }
 .button {
 	border-radius: 1vw;
-	background-color: #FFD7B5;
+	background-color: #9ec1a3;
 	border: none;
 	color: black;
 	text-align: center;
@@ -237,7 +237,7 @@ div.omrs-input-group {
 	font-weight: bold;
 	cursor: pointer;
 
-	background-color: #FFD7B5;
+	background-color: #9ec1a3;
 	border: none;
 	border-bottom: 1px solid black;
 	color: black;
@@ -269,7 +269,7 @@ div.omrs-input-group {
 		font-weight: bold;
 		cursor: pointer;
 		margin-top: 1vw;
-		background-color: #FFD7B5;
+		background-color: #9ec1a3;
 		border-bottom: 0.2vw solid black;
 		color: black;
 		height: auto;

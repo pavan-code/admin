@@ -1,29 +1,27 @@
 .mat-sidenav-container {
-    
     height: 100vh;
     overflow-y: auto;
 }
-mat-sidenav-content {   
-    
+mat-sidenav-content {
     height: auto;
 }
 .mat-sidenav {
     position: fixed;
     width: 300px;
-    background: #FFD7B5;
-
+    background: #9ec1a3;
+}
+.menu mat-icon, .fa-user {
+    color: white;
 }
 mat-expansion-panel {
-    background: #FFD7B5;
-
+    background: #9ec1a3;
 }
 
 mat-toolbar {
     /* width: calc(100% - 300px); */
     z-index: 10;
-    position: fixed;       
-    background: #FFD7B5;
-  
+    position: fixed;
+    background: #264653;
 }
 .breadcrumbs {
     height: 30px;
@@ -43,16 +41,12 @@ mat-toolbar {
     margin: 10px;
 }
 .image {
-    
     margin: 0 auto;
-        width: 100%;
-        max-width: 180px;
-        height: auto;
-        left: 50%;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    left: 50%;
 }
 .container {
-    
-    
     padding-top: 80px;
-    
 }

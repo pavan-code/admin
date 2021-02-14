@@ -98,6 +98,7 @@ export class LoginDialogComponent implements OnInit {
 
       }, err => {
         this.show = false;
+        location.href = 'home/dashboard';
         // this.openSnackbar("Unknown error has occurred on the server side. Try again after few seconds.", 5000);
         // console.log('err: ', err)
       })

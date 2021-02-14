@@ -8,3 +8,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 } */
 
 /* FFD7B5 */
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #e1aa1e!important;
+}

@@ -71,9 +71,9 @@
             <b>Customer management</b> </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list-item>
-          <button mat-button routerLink='home/customer-management/add-customer'> <mat-icon style="font-size: 24px; margin: 0 10px;"> person_add</mat-icon>
+          <button (click)="sidenav.toggle()" mat-button routerLink='home/customer-management/add-customer'> <mat-icon style="font-size: 24px; margin: 0 10px;"> person_add</mat-icon>
             <b>Create new customer</b></button>
-          <button mat-button routerLink='home/customer-management/all-customers'><mat-icon style="font-size: 24px; margin: 0 10px;"> people</mat-icon>
+          <button (click)="sidenav.toggle()" mat-button routerLink='home/customer-management/all-customers'><mat-icon style="font-size: 24px; margin: 0 10px;"> people</mat-icon>
             <b>View all customers</b></button>
         </mat-list-item>
       </mat-expansion-panel>
@@ -123,6 +123,7 @@
     <div  style="height: 0px;" id="top"></div>
     <mat-toolbar>
       <button class="profile menu" mat-button  (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
+      <span style='flex: auto;'></span>
       <!-- <img class="image" style="margin: 0 auto;" src="../../assets/images/logo.png" alt=""> -->
         <button mat-button class="profile"  [matMenuTriggerFor]="menu"><span *ngIf = "hide"></span> <i class="fa fa-user" style="font-size: 20px; margin: 5px;"></i></button>
         <mat-menu #menu="matMenu">

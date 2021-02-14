@@ -75,8 +75,18 @@ export class OurAllProductsComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }, 1000);
         
+    }, err => {
+      this.show = false;
+      this.openSnackbar('No network connection. Unable to retrieve products', 5000);
     })
 
+  }
+  openSnackbar(message, duration: number): any {
+    this.snackbar.open(message, 'close', {
+      duration,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
   }
 
   ngAfterViewInit(): void {

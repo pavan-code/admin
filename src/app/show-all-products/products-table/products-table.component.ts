@@ -5,7 +5,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-table',
@@ -19,7 +19,7 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator', { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productService: ProductService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService, private dialog: MatDialog,  private snackbar: MatSnackBar) { }
 
   dataSource = new MatTableDataSource();
   show = true;
@@ -73,11 +73,18 @@ export class ProductsTableComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort; // For sort
-      }, 1000);
-
-      
-      
+      }, 1000);      
+    }, err => {
+      this.show = false;
+      this.openSnackbar('No network connection. Unable to retrieve products', 5000);
     })
+  }
+  openSnackbar(message, duration: number): any {
+    this.snackbar.open(message, 'close', {
+      duration,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+    });
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator; // For pagination
