@@ -123,7 +123,7 @@
     <div  style="height: 0px;" id="top"></div>
     <mat-toolbar>
       <button class="profile menu" mat-button  (click)="sidenav.toggle()" ><mat-icon>menu</mat-icon></button>
-      <img class="image" style="margin: 0 auto;" src="../../assets/images/logo.png" alt="">
+      <!-- <img class="image" style="margin: 0 auto;" src="../../assets/images/logo.png" alt=""> -->
         <button mat-button class="profile"  [matMenuTriggerFor]="menu"><span *ngIf = "hide"></span> <i class="fa fa-user" style="font-size: 20px; margin: 5px;"></i></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink='/login'*ngIf = "!loggedIn" > <i class="fa fa-sign-in" style="font-size: 20px; margin: 5px;"></i>  Login</button>
